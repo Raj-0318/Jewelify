@@ -1,0 +1,222 @@
+<div class="min-h-screen bg-[#FDFCFB] pt-40 pb-24 font-sans selection:bg-primary/10">
+    <div class="max-w-6xl mx-auto px-8 lg:px-12">
+
+        @if (user) {
+        <!-- Standard Profile Header -->
+        <header
+            class="mb-24 animate-fade-in flex flex-col items-start lg:flex-row lg:items-end lg:justify-between gap-8">
+            <div class="space-y-4">
+                <span class="text-[11px] uppercase tracking-[0.5em] text-primary/60 font-medium block">Account
+                    Overview</span>
+                <h1 class="text-6xl sm:text-7xl font-display text-secondary italic leading-tight">
+                    {{ user.name.split(' ')[0] }}<span class="text-primary/20">.</span>
+                </h1>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-right hidden sm:block">
+                    <p class="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">Account Status</p>
+                    <p class="text-[11px] font-bold text-secondary tracking-[0.2em]">{{ user.isAdmin ? 'ADMINISTRATOR' :
+                        'CUSTOMER' }}</p>
+                </div>
+                <div class="w-px h-10 bg-gray-100 hidden sm:block"></div>
+                <button (click)="authService.logout()"
+                    class="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors duration-300">
+                    Logout
+                </button>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+
+            <!-- Information & Editing -->
+            <aside class="lg:col-span-5 space-y-16">
+
+                <section
+                    class="bg-white p-12 shadow-[0_40px_100px_rgba(0,0,0,0.02)] border border-gray-50 rounded-[2.5rem] relative overflow-hidden group">
+                    <!-- Subtle Decorative Glow -->
+                    <div
+                        class="absolute -top-24 -right-24 w-48 h-48 bg-accent/50 rounded-full blur-[80px] group-hover:scale-110 transition-transform duration-700">
+                    </div>
+
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-8 mb-12">
+                            <div
+                                class="h-24 w-24 rounded-2xl bg-accent flex items-center justify-center text-primary text-3xl font-display shadow-inner">
+                                {{ getInitials(user.name) }}
+                            </div>
+                            <div>
+                                <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-gray-400 mb-1">Information
+                                </h3>
+                                <p class="text-2xl font-display text-secondary italic">{{ user.name }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Info Display / Form -->
+                        @if (!isEditing) {
+                        <div class="space-y-10 animate-fade-in">
+                            <div class="grid grid-cols-1 gap-8 opacity-80">
+                                <div class="space-y-1.5">
+                                    <label class="text-[9px] uppercase tracking-[0.3em] text-primary/60 font-bold">Email
+                                        Address</label>
+                                    <p class="text-sm text-secondary font-medium tracking-wide">{{ user.email }}</p>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label
+                                        class="text-[9px] uppercase tracking-[0.3em] text-primary/60 font-bold">Account
+                                        ID</label>
+                                    <p
+                                        class="text-sm text-secondary font-mono font-semibold tracking-widest text-[11px]">
+                                        #{{ formatOrderId(user.id) }}</p>
+                                </div>
+                            </div>
+                            <button (click)="toggleEdit()"
+                                class="w-full mt-6 py-5 bg-secondary text-white text-[10px] font-bold uppercase tracking-[0.3em] rounded-2xl hover:bg-secondary/90 transition-all duration-500 shadow-2xl shadow-secondary/20 hover:-translate-y-1">
+                                Edit Profile
+                            </button>
+                        </div>
+                        } @else {
+                        <div class="space-y-8 animate-fade-in-up">
+                            <div class="space-y-6">
+                                <div class="group/input">
+                                    <label
+                                        class="text-[9px] uppercase tracking-[0.3em] text-primary/60 font-bold mb-3 block ml-1 transition-colors group-focus-within/input:text-primary">Full
+                                        Name</label>
+                                    <input [(ngModel)]="tempName" type="text"
+                                        class="w-full px-6 py-5 bg-surface/50 border border-gray-100 rounded-2xl text-sm focus:bg-white focus:border-primary/20 focus:ring-8 focus:ring-primary/5 outline-none transition-all duration-500 shadow-sm"
+                                        placeholder="Enter your name">
+                                </div>
+                                <div class="group/input">
+                                    <label
+                                        class="text-[9px] uppercase tracking-[0.3em] text-primary/60 font-bold mb-3 block ml-1 transition-colors group-focus-within/input:text-primary">Email
+                                        Address</label>
+                                    <input [(ngModel)]="tempEmail" type="email"
+                                        class="w-full px-6 py-5 bg-surface/50 border border-gray-100 rounded-2xl text-sm focus:bg-white focus:border-primary/20 focus:ring-8 focus:ring-primary/5 outline-none transition-all duration-500 shadow-sm"
+                                        placeholder="Enter your email">
+                                </div>
+                            </div>
+                            <div class="flex gap-4 pt-4">
+                                <button (click)="saveProfile()"
+                                    class="flex-1 py-5 bg-primary text-white text-[10px] font-bold uppercase tracking-[0.3em] rounded-2xl hover:bg-primary/90 transition-all duration-500 shadow-xl shadow-primary/10">
+                                    Save Changes
+                                </button>
+                                <button (click)="toggleEdit()"
+                                    class="px-8 py-5 border border-gray-100 text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] rounded-2xl hover:bg-gray-50 transition-all duration-500">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </section>
+
+                <div
+                    class="p-10 bg-accent/20 rounded-[2rem] border border-primary/5 group cursor-pointer hover:bg-accent/40 transition-colors duration-500">
+                    <div class="flex items-center justify-between">
+                        <div class="space-y-1.5">
+                            <h4 class="text-[10px] font-bold text-secondary uppercase tracking-[0.3em]">Security</h4>
+                            <p class="text-[11px] text-gray-400 font-medium">Manage your security settings.</p>
+                        </div>
+                        <div
+                            class="h-10 w-10 bg-white rounded-full flex items-center justify-center text-primary/40 group-hover:text-primary transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
+            <!-- Activity & Orders -->
+            <main class="lg:col-span-7 space-y-16">
+
+                <header class="flex items-end justify-between px-2 pb-6 border-b border-gray-100">
+                    <div class="space-y-2">
+                        <span
+                            class="text-[9px] uppercase tracking-[0.5em] text-primary font-bold block opacity-60">History</span>
+                        <h3 class="text-4xl font-display text-secondary italic">Recent Orders</h3>
+                    </div>
+                    @if (recentOrders.length > 0) {
+                    <a routerLink="/orders"
+                        class="text-[9px] font-bold uppercase tracking-[0.4em] text-gray-400 hover:text-primary transition-colors duration-300">
+                        View All Orders
+                    </a>
+                    }
+                </header>
+
+                <div class="space-y-8">
+                    @if (recentOrders.length === 0) {
+                    <div
+                        class="bg-white rounded-[3rem] p-24 text-center border border-gray-50 shadow-sm animate-fade-in group">
+                        <div
+                            class="w-24 h-24 bg-accent rounded-full flex items-center justify-center mx-auto mb-10 group-hover:scale-110 transition-transform duration-700">
+                            <svg class="w-8 h-8 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18 18.247 18.477 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <h4 class="text-2xl font-display text-secondary italic mb-6">No orders found.</h4>
+                        <p class="text-gray-400 font-light text-sm mb-12 max-w-[280px] mx-auto opacity-70">You haven't
+                            placed any orders yet.</p>
+                        <a routerLink="/products"
+                            class="inline-flex items-center gap-4 px-12 py-5 bg-secondary text-white text-[10px] font-bold uppercase tracking-[0.4em] rounded-full hover:shadow-2xl transition-all duration-500">
+                            Start Shopping
+                        </a>
+                    </div>
+                    } @else {
+                    <div *ngFor="let order of recentOrders"
+                        class="bg-white p-10 rounded-[2.5rem] border border-gray-50 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 group hover:shadow-[0_40px_80px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-all duration-700">
+                        <div class="flex items-center gap-8">
+                            <div
+                                class="h-20 w-20 bg-accent rounded-3xl flex items-center justify-center text-primary/40 group-hover:text-primary group-hover:rotate-12 transition-all duration-700">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                        d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="text-[9px] font-bold text-gray-300 uppercase tracking-widest block">Order
+                                    #{{ formatOrderId(order._id) }}</span>
+                                <p class="text-sm font-medium text-secondary">{{ order.createdAt | date:'MMMM d, y' }}
+                                </p>
+                                <span
+                                    class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] pt-1 block opacity-80">{{
+                                    order.status }}</span>
+                            </div>
+                        </div>
+                        <div class="text-left md:text-right w-full md:w-auto md:pl-10 md:border-l border-gray-100">
+                            <p class="text-3xl font-display text-secondary italic mb-1">₹{{ order.totalAmount |
+                                number:'1.0-0' }}</p>
+                            <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">{{
+                                order.products?.length || 0 }} Items</p>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+            </main>
+        </div>
+
+        } @else {
+        <!-- Login Required Style -->
+        <div class="max-w-2xl mx-auto py-40 text-center animate-fade-in">
+            <div
+                class="mb-12 w-28 h-28 bg-accent rounded-full flex items-center justify-center mx-auto text-primary relative group">
+                <div class="absolute inset-0 bg-primary/5 rounded-full animate-ping opacity-20"></div>
+                <svg class="w-10 h-10 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h2 class="text-5xl font-display text-secondary italic mb-10">Please log in.</h2>
+            <p class="text-gray-400 font-light text-lg mb-16 leading-relaxed max-w-sm mx-auto opacity-70 italic">Please
+                sign in to manage your account and view your history.</p>
+            <a routerLink="/login"
+                class="inline-block px-16 py-6 bg-secondary text-white text-[11px] font-bold uppercase tracking-[0.5em] rounded-full hover:bg-secondary/90 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
+                Log In
+            </a>
+        </div>
+        }
+    </div>
+</div>

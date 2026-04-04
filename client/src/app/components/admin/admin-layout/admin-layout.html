@@ -1,0 +1,138 @@
+<div class="flex h-screen bg-surface font-light overflow-hidden text-gray-900">
+    <!-- Sidebar -->
+    <aside class="w-72 bg-secondary text-white hidden md:flex flex-col flex-shrink-0 z-20 transition-all duration-300">
+        <!-- Logo Area -->
+        <div class="h-24 flex items-center px-10 border-b border-gray-800">
+            <a routerLink="/admin" class="tracking-widest flex items-center">
+                <div class="flex items-center gap-3">
+                    <svg class="w-16 h-16 text-white hover:text-primary transition-colors duration-500 flex-shrink-0"
+                        viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path
+                            d="M15,20 C15,5 40,5 50,20 C60,35 85,35 85,20 C85,10 75,5 65,10 C55,15 45,25 35,30 C25,35 15,30 15,20 Z" />
+                        <path d="M40,20 C45,10 55,10 60,20 C60,30 50,35 45,30 C35,25 25,15 25,10" opacity="0.3"
+                            stroke-width="0.5" />
+                    </svg>
+                    <div>
+                        <span class="block text-2xl font-display text-white">Jewellify</span>
+                        <span class="block text-[10px] uppercase tracking-[0.2em] text-gray-500 mt-0.5">Admin
+                            Console</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 overflow-y-auto py-10 px-6 space-y-1 custom-scrollbar">
+            <div class="px-4 mb-4 text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold">Overview</div>
+
+            <a routerLink="/admin/dashboard" routerLinkActive="bg-white/5 text-white"
+                class="flex items-center px-4 py-3 text-xs uppercase tracking-widest text-gray-400 hover:bg-white/5 hover:text-white transition-colors duration-200">
+                <span class="font-semibold">Dashboard</span>
+            </a>
+
+            <div class="px-4 mt-10 mb-4 text-[10px] uppercase tracking-[0.2em] text-gray-500 font-semibold">Management
+            </div>
+
+            <a routerLink="/admin/products" routerLinkActive="bg-white/5 text-white"
+                class="flex items-center px-4 py-3 text-xs uppercase tracking-widest text-gray-400 hover:bg-white/5 hover:text-white transition-colors duration-200">
+                <span class="font-semibold">Products</span>
+            </a>
+
+            <a routerLink="/admin/orders" routerLinkActive="bg-white/5 text-white"
+                class="flex items-center px-4 py-3 text-xs uppercase tracking-widest text-gray-400 hover:bg-white/5 hover:text-white transition-colors duration-200">
+                <span class="font-semibold">Orders</span>
+            </a>
+
+            <a routerLink="/admin/users" routerLinkActive="bg-white/5 text-white"
+                class="flex items-center px-4 py-3 text-xs uppercase tracking-widest text-gray-400 hover:bg-white/5 hover:text-white transition-colors duration-200">
+                <span class="font-semibold">Users</span>
+            </a>
+
+            <a routerLink="/admin/reviews" routerLinkActive="bg-white/5 text-white"
+                class="flex items-center px-4 py-3 text-xs uppercase tracking-widest text-gray-400 hover:bg-white/5 hover:text-white transition-colors duration-200">
+                <span class="font-semibold">Inquiries</span>
+            </a>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="p-8 border-t border-gray-800">
+            <button (click)="logout()"
+                class="flex items-center w-full px-4 py-3 text-xs uppercase tracking-widest font-semibold text-gray-500 hover:text-white transition-colors duration-200">
+                Sign Out
+            </button>
+        </div>
+    </aside>
+
+    <!-- Content Area -->
+    <div class="flex-1 flex flex-col min-w-0 bg-surface">
+
+        <!-- Top Bar -->
+        <header class="h-24 bg-surface border-b border-gray-200 flex items-center justify-between px-10 z-10 lg:static">
+            <!-- Mobile Toggle -->
+            <button (click)="toggleSidebar()" class="md:hidden text-gray-900 focus:outline-none pr-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Search -->
+            <div class="hidden md:flex items-center flex-1 max-w-lg">
+                <input type="text"
+                    class="w-full border-0 border-b border-gray-300 bg-transparent py-2 text-sm text-gray-900 placeholder-gray-400 focus:ring-0 focus:border-secondary transition-colors"
+                    placeholder="Search global...">
+            </div>
+
+            <!-- Profile dropdown -->
+            <div class="flex items-center space-x-8">
+                <div
+                    class="flex items-center justify-center h-10 w-10 bg-accent text-gray-900 font-display text-xl cursor-pointer">
+                    A
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Scroll -->
+        <main class="flex-1 overflow-x-hidden overflow-y-auto w-full p-10">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <div *ngIf="isSidebarOpen" class="fixed inset-0 z-40 bg-surface/90 backdrop-blur-sm md:hidden"
+        (click)="toggleSidebar()"></div>
+
+    <aside [class.translate-x-0]="isSidebarOpen" [class.-translate-x-full]="!isSidebarOpen"
+        class="fixed inset-y-0 left-0 z-50 w-72 bg-secondary text-white transition-transform duration-300 ease-in-out md:hidden flex flex-col pt-10">
+        <div class="px-10 mb-10 flex justify-between items-center border-b border-gray-800 pb-8">
+            <div class="flex items-center gap-3">
+                <svg class="w-12 h-12 text-white hover:opacity-75 transition-all duration-500" viewBox="0 0 100 40"
+                    fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M15,20 C15,5 40,5 50,20 C60,35 85,35 85,20 C85,10 75,5 65,10 C55,15 45,25 35,30 C25,35 15,30 15,20 Z" />
+                    <path d="M40,20 C45,10 55,10 60,20 C60,30 50,35 45,30 C35,25 25,15 25,10" opacity="0.3"
+                        stroke-width="0.5" />
+                </svg>
+                <span class="text-xl font-display text-white">Jewellify</span>
+            </div>
+            <button (click)="toggleSidebar()" class="text-gray-400 hover:text-white">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <nav class="flex-1 overflow-y-auto px-6 space-y-2">
+            <a routerLink="/admin/dashboard" (click)="toggleSidebar()" routerLinkActive="text-white"
+                class="block px-4 py-4 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Dashboard</a>
+            <a routerLink="/admin/products" (click)="toggleSidebar()" routerLinkActive="text-white"
+                class="block px-4 py-4 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Products</a>
+            <a routerLink="/admin/orders" (click)="toggleSidebar()" routerLinkActive="text-white"
+                class="block px-4 py-4 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Orders</a>
+            <a routerLink="/admin/users" (click)="toggleSidebar()" routerLinkActive="text-white"
+                class="block px-4 py-4 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Users</a>
+            <a routerLink="/admin/reviews" (click)="toggleSidebar()" routerLinkActive="text-white"
+                class="block px-4 py-4 text-xs uppercase tracking-widest text-gray-400 hover:text-white transition-colors">Inquiries</a>
+        </nav>
+    </aside>
+</div>

@@ -1,0 +1,61 @@
+<div class="space-y-12 animate-fade-in font-light">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
+        <div>
+            <h1 class="text-3xl font-display text-gray-900 mb-2">Client Inquiries</h1>
+            <p class="text-sm text-gray-500 uppercase tracking-widest">Review and respond to client messages</p>
+        </div>
+    </div>
+
+    <!-- Messages Table -->
+    <div class="border border-gray-200 bg-white">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-surface border-b border-gray-200">
+                    <tr>
+                        <th
+                            class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest whitespace-nowrap">
+                            Received</th>
+                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Client
+                            Details</th>
+                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">
+                            Regarding</th>
+                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Message
+                            content</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr *ngFor="let message of messages()" class="hover:bg-accent/10 transition-colors align-top">
+                        <td class="px-8 py-6">
+                            <span class="text-[10px] text-gray-500 uppercase tracking-widest whitespace-nowrap">
+                                {{ message.createdAt | date:'longDate' }}
+                            </span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <div class="flex flex-col gap-1">
+                                <span class="font-medium text-gray-900">{{ message.name }}</span>
+                                <span class="text-xs text-gray-500">{{ message.email }}</span>
+                            </div>
+                        </td>
+                        <td class="px-8 py-6">
+                            <span class="font-medium text-gray-900 text-sm">
+                                {{ message.subject }}
+                            </span>
+                        </td>
+                        <td class="px-8 py-6">
+                            <p class="text-sm text-gray-600 leading-relaxed max-w-lg italic">
+                                "{{ message.message }}"
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="messages().length === 0" class="text-center py-24 bg-white">
+            <h3 class="text-xl font-display text-gray-900 mb-2">No inquiries pending</h3>
+            <p class="text-gray-500 text-sm font-light">Client messages will appear here once submitted.</p>
+        </div>
+    </div>
+</div>

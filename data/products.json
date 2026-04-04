@@ -1,0 +1,218 @@
+[
+  {
+    "name": "Diamond Solitaire Ring",
+    "description": "Elegant 1-carat diamond ring in 18k white gold.",
+    "price": 120000,
+    "category": "Rings",
+    "image": "https://i.pinimg.com/1200x/59/0e/3d/590e3db84710b5b8407cce2c9f9290a6.jpg",
+    "rating": 4.9,
+    "stock": true
+  },
+  {
+    "name": "Pearl Drop Earrings",
+    "description": "Classic freshwater pearl earrings with silver posts.",
+    "price": 152000,
+    "category": "Earrings",
+    "image": "https://i.pinimg.com/736x/5f/6a/1a/5f6a1a01164d808db3d9df3bf3d5b373.jpg",
+    "rating": 4.5,
+    "stock": true
+  },
+  {
+    "name": "Gold Chain Necklace",
+    "description": "14k solid gold minimalist chain necklace.",
+    "price": 98500,
+    "category": "Necklaces",
+    "image": "https://i.pinimg.com/1200x/4e/00/2f/4e002f05f8aecaae363c811b0abbb97b.jpg",
+    "rating": 4.8,
+    "stock": true
+  },
+  {
+    "name": "Sapphire Pendant",
+    "description": "Deep blue sapphire pendant on a platinum chain.",
+    "price": 35000,
+    "category": "Necklaces",
+    "image": "https://i.pinimg.com/1200x/5f/62/0f/5f620fb5c5effec04f65942cfc1ee4fb.jpg",
+    "rating": 4.7,
+    "stock": true
+  },
+  {
+    "name": "Tennis Bracelet",
+    "description": "Sparkling diamond tennis bracelet in white gold.",
+    "price": 65000,
+    "category": "Bracelets",
+    "image": "https://i.pinimg.com/1200x/ff/73/54/ff73547014677f3241e5ac549c33453f.jpg",
+    "rating": 4.9,
+    "stock": true
+  },
+  {
+    "name": "Ruby Stud Earrings",
+    "description": "Vibrant ruby gemstones set in 18k yellow gold.",
+    "price": 75000,
+    "category": "Earrings",
+    "image": "https://i.pinimg.com/736x/94/d0/01/94d00198c5f149b1abccfd72b636de25.jpg",
+    "rating": 4.6,
+    "stock": true
+  },
+  {
+    "name": "Rose Gold Bangle",
+    "description": "Sleek and modern rose gold bangle bracelet.",
+    "price": 65200,
+    "category": "Bracelets",
+    "image": "https://i.pinimg.com/736x/ff/0c/43/ff0c433ab26afb1b28b78f1f3b38bb1b.jpg",
+    "rating": 4.4,
+    "stock": true
+  },
+  {
+    "name": "Emerald Cut Engagement Ring",
+    "description": "Stunning emerald-cut diamond engagement ring.",
+    "price": 82000,
+    "category": "Rings",
+    "image": "https://i.pinimg.com/736x/37/67/3a/37673afe913dbdea815bf7141fc72c7a.jpg",
+    "rating": 4.9,
+    "stock": true
+  },
+  {
+    "name": "Silver Hoop Earrings",
+    "description": "Simple and elegant sterling silver hoop earrings.",
+    "price": 70000,
+    "category": "Earrings",
+    "image": "https://i.pinimg.com/736x/41/3b/e8/413be8de4b7f6408b657ea009c6a404e.jpg",
+    "rating": 4.3,
+    "stock": true
+  },
+  {
+    "name": "Platinum Wedding Band",
+    "description": "Classic platinum wedding band with a polished finish.",
+    "price": 43800,
+    "category": "Rings",
+    "image": "https://i.pinimg.com/1200x/0e/b4/3d/0eb43daee8ec8496fb47071f78b5eaf4.jpg",
+    "rating": 4.7,
+    "stock": true
+  },
+  {
+    "name": "Amethyst Necklace",
+    "description": "Beautiful purple amethyst gemstone necklace.",
+    "price": 194000,
+    "category": "Necklaces",
+    "image": "https://i.pinimg.com/736x/55/b0/f5/55b0f54811c215efe6d80e8e1e6bac12.jpg",
+    "rating": 4.5,
+    "stock": true
+  },
+  {
+    "name": "Charm Bracelet",
+    "description": "Customizable silver charm bracelet.",
+    "price": 160000,
+    "category": "Bracelets",
+    "image": "https://i.pinimg.com/736x/ee/a5/9b/eea59b448d2ea59b6780900c2ef3bfbc.jpg",
+    "rating": 4.6,
+    "stock": true
+  },
+  {
+    "name": "Diamond Drop Earrings",
+    "description": "Exquisite diamond drop earrings for special occasions.",
+    "price": 90000,
+    "category": "Earrings",
+    "image": "https://i.pinimg.com/1200x/72/4e/56/724e56e9dbee356db3192fe2b98dd560.jpg",
+    "rating": 4.9,
+    "stock": false
+  },
+  {
+    "name": "Twisted Vine Ring",
+    "description": "Intricate 18k rose gold ring with a delicate twisted vine design and tiny pav\u00e9 diamonds.",
+    "price": 88000,
+    "category": "Rings",
+    "image": "https://i.pinimg.com/1200x/cf/54/e3/cf54e36b5a867991da4031ecac106f23.jpg",
+    "rating": 4.8,
+    "stock": true
+  },
+  {
+    "name": "Black Diamond Ring",
+    "description": "Bold 1.5-carat black diamond set in blackened 18k white gold for a dramatic statement.",
+    "price": 122000,
+    "category": "Rings",
+    "image": "https://i.pinimg.com/1200x/20/65/1e/20651e7d80873aa7f311e44e98f6803b.jpg",
+    "rating": 4.7,
+    "stock": true
+  },
+  {
+    "name": "Moonstone Stackable Ring",
+    "description": "Ethereal rainbow moonstone set in a thin sterling silver band, perfect for stacking.",
+    "price": 188000,
+    "category": "Rings",
+    "image": "https://i.pinimg.com/1200x/f6/ff/c6/f6ffc67d0f06f1b4c801e3d4c59da10b.jpg",
+    "rating": 4.5,
+    "stock": true
+  },
+  {
+    "name": "Layered Diamond Bar Necklace",
+    "description": "Minimalist 14k gold horizontal bar necklace accented with a row of brilliant-cut diamonds.",
+    "price": 47500,
+    "category": "Necklaces",
+    "image": "https://i.pinimg.com/736x/79/8c/a7/798ca75af20b45f068b58b8bfeedaff8.jpg",
+    "rating": 4.8,
+    "stock": true
+  },
+  {
+    "name": "Opal Teardrop Necklace",
+    "description": "Iridescent Australian opal teardrop pendant suspended on a fine 18k white gold chain.",
+    "price": 356000,
+    "category": "Necklaces",
+    "image": "https://i.pinimg.com/1200x/77/d0/d8/77d0d8d8f41588b7418eaf6c3b326363.jpg",
+    "rating": 4.6,
+    "stock": true
+  },
+  {
+    "name": "Pearl Choker Necklace",
+    "description": "Lustrous Akoya pearl choker with an 18k gold diamond-set clasp.",
+    "price": 650000,
+    "category": "Necklaces",
+    "image": "https://i.pinimg.com/736x/2f/2d/58/2f2d58489a34dc478ebf8d203eb86f10.jpg",
+    "rating": 4.9,
+    "stock": true
+  },
+  {
+    "name": "Emerald Chandelier Earrings",
+    "description": "Cascading Colombian emerald drops framed in intricate 18k yellow gold filigree.",
+    "price": 900000,
+    "category": "Earrings",
+    "image": "https://i.pinimg.com/736x/62/d7/52/62d752038b3853497152ce6c82e62eda.jpg",
+    "rating": 4.8,
+    "stock": true
+  },
+  {
+    "name": "Gold Huggie Earrings",
+    "description": "Sleek 14k gold huggie hoop earrings with a smooth polished finish.",
+    "price": 138000,
+    "category": "Earrings",
+    "image": "https://i.pinimg.com/1200x/0d/bf/26/0dbf2641c4a156464fe7a1965295902c.jpg",
+    "rating": 4.4,
+    "stock": true
+  },
+  {
+    "name": "Aquamarine Stud Earrings",
+    "description": "Brilliant sky-blue aquamarine stones in a classic four-prong platinum setting.",
+    "price": 300000,
+    "category": "Earrings",
+    "image": "https://i.pinimg.com/1200x/dd/83/04/dd83045a2cb5690a381f280fca802fd9.jpg",
+    "rating": 4.6,
+    "stock": true
+  },
+  {
+    "name": "Gold Beaded Bracelet",
+    "description": "Handcrafted 18k gold beaded bracelet with a smooth matte finish, adjustable fit.",
+    "price": 65000,
+    "category": "Bracelets",
+    "image": "https://i.pinimg.com/1200x/95/ee/b0/95eeb0da151a90dab4fc0d223c9f5ff3.jpg",
+    "rating": 4.5,
+    "stock": true
+  },
+  {
+    "name": "Diamond Cuff Bracelet",
+    "description": "Open-ended 18k white gold cuff paved with 2 carats of brilliant-cut diamonds.",
+    "price": 168800,
+    "category": "Bracelets",
+    "image": "https://i.pinimg.com/1200x/fb/46/a9/fb46a9fdc79de449f4a8229635bbe691.jpg",
+    "rating": 4.9,
+    "stock": true
+  }
+]

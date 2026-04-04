@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Admin User",
+    "email": "admin@gmail.com",
+    "password": "Admin@123",
+    "isAdmin": true
+  },
+  {
+    "name": "Mandaliya Raj Manojbhai",
+    "email": "mandaliya@gmail.com",
+    "password": "Raj0318",
+    "isAdmin": false
+  }
+]

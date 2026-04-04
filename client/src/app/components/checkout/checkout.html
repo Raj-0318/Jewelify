@@ -1,0 +1,223 @@
+<div class="min-h-screen bg-surface pt-24 pb-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <h1 class="text-4xl sm:text-5xl font-display text-gray-900 mb-12 text-center md:text-left">Checkout</h1>
+
+        <div class="lg:grid lg:grid-cols-12 lg:gap-x-16 xl:gap-x-24 lg:items-start">
+
+            <form #checkoutForm="ngForm" class="lg:col-span-7 space-y-12 mb-16 lg:mb-0">
+                <!-- Shipping Info -->
+                <div class="animate-fade-in font-light">
+                    <div class="border-b border-gray-200 pb-4 mb-8">
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-semibold text-primary block mb-2">Step
+                            1</span>
+                        <h2 class="text-2xl font-display text-gray-900">Delivery Details</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6">
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs uppercase tracking-widest font-semibold text-gray-500 mb-2">Full
+                                Name</label>
+                            <input type="text" [(ngModel)]="shipping.name" name="shippingName" required #sName="ngModel"
+                                class="block w-full bg-transparent border-0 border-b border-gray-300 px-0 py-3 text-gray-900 focus:ring-0 focus:border-secondary transition-colors"
+                                [class.border-red-400]="sName.invalid && (sName.dirty || sName.touched)">
+                            <div *ngIf="sName.invalid && (sName.dirty || sName.touched)"
+                                class="mt-1 text-[10px] text-red-500 uppercase tracking-widest font-semibold">
+                                Full name is required.
+                            </div>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label
+                                class="block text-xs uppercase tracking-widest font-semibold text-gray-500 mb-2">Address</label>
+                            <input type="text" [(ngModel)]="shipping.address" name="shippingAddress" required
+                                #sAddress="ngModel"
+                                class="block w-full bg-transparent border-0 border-b border-gray-300 px-0 py-3 text-gray-900 focus:ring-0 focus:border-secondary transition-colors"
+                                [class.border-red-400]="sAddress.invalid && (sAddress.dirty || sAddress.touched)">
+                            <div *ngIf="sAddress.invalid && (sAddress.dirty || sAddress.touched)"
+                                class="mt-1 text-[10px] text-red-500 uppercase tracking-widest font-semibold">
+                                Address is required.
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs uppercase tracking-widest font-semibold text-gray-500 mb-2">City</label>
+                            <input type="text" [(ngModel)]="shipping.city" name="shippingCity" required #sCity="ngModel"
+                                class="block w-full bg-transparent border-0 border-b border-gray-300 px-0 py-3 text-gray-900 focus:ring-0 focus:border-secondary transition-colors"
+                                [class.border-red-400]="sCity.invalid && (sCity.dirty || sCity.touched)">
+                            <div *ngIf="sCity.invalid && (sCity.dirty || sCity.touched)"
+                                class="mt-1 text-[10px] text-red-500 uppercase tracking-widest font-semibold">
+                                City is required.
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs uppercase tracking-widest font-semibold text-gray-500 mb-2">Postal
+                                Code</label>
+                            <input type="text" [(ngModel)]="shipping.zip" name="shippingZip" required #sZip="ngModel"
+                                maxlength="6" pattern="[0-9]{6}" (input)="onZipInput($event)"
+                                class="block w-full bg-transparent border-0 border-b border-gray-300 px-0 py-3 text-gray-900 focus:ring-0 focus:border-secondary transition-colors"
+                                [class.border-red-400]="sZip.invalid && (sZip.dirty || sZip.touched)"
+                                placeholder="123456">
+                            <div *ngIf="sZip.invalid && (sZip.dirty || sZip.touched)"
+                                class="mt-1 text-[10px] text-red-500 uppercase tracking-widest font-semibold">
+                                <span *ngIf="sZip.errors?.['required']">Postal code is required.</span>
+                                <span *ngIf="sZip.errors?.['pattern']">Please enter exactly 6 digits.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Info -->
+                <div class="animate-fade-in delay-100 font-light pt-8">
+                    <div class="border-b border-gray-200 pb-4 mb-8">
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-semibold text-primary block mb-2">Step
+                            2</span>
+                        <h2 class="text-2xl font-display text-gray-900">Payment Method</h2>
+                    </div>
+
+                    <!-- Payment Method Selection -->
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <button type="button" (click)="selectedPaymentMethod = 'CARD'"
+                            [class.border-gray-900]="selectedPaymentMethod === 'CARD'"
+                            [class.bg-gray-50]="selectedPaymentMethod === 'CARD'"
+                            [class.text-gray-900]="selectedPaymentMethod === 'CARD'"
+                            class="flex-1 border border-gray-200 py-4 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:border-gray-900 transition-colors">
+                            Credit Card
+                        </button>
+
+                        <button type="button" (click)="selectedPaymentMethod = 'UPI'"
+                            [class.border-gray-900]="selectedPaymentMethod === 'UPI'"
+                            [class.bg-gray-50]="selectedPaymentMethod === 'UPI'"
+                            [class.text-gray-900]="selectedPaymentMethod === 'UPI'"
+                            class="flex-1 border border-gray-200 py-4 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:border-gray-900 transition-colors">
+                            UPI
+                        </button>
+
+                        <button type="button" (click)="selectedPaymentMethod = 'COD'"
+                            [class.border-gray-900]="selectedPaymentMethod === 'COD'"
+                            [class.bg-gray-50]="selectedPaymentMethod === 'COD'"
+                            [class.text-gray-900]="selectedPaymentMethod === 'COD'"
+                            class="flex-1 border border-gray-200 py-4 text-xs font-semibold uppercase tracking-widest text-gray-500 hover:border-gray-900 transition-colors">
+                            COD
+                        </button>
+                    </div>
+
+                    <!-- Card Details -->
+                    <div *ngIf="selectedPaymentMethod === 'CARD'"
+                        class="grid grid-cols-1 gap-y-8 sm:grid-cols-2 sm:gap-x-6 animate-fade-in">
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs uppercase tracking-widest font-semibold text-gray-500 mb-2">Card
+                                Number</label>
+                            <input type="text" [(ngModel)]="payment.cardNumber" name="cardNumber" required
+                                #cNum="ngModel"
+                                class="block w-full bg-transparent border-0 border-b border-gray-300 px-0 py-3 text-gray-900 focus:ring-0 focus:border-secondary transition-colors"
+                                [class.border-red-400]="cNum.invalid && (cNum.dirty || cNum.touched)">
+                            <div *ngIf="cNum.invalid && (cNum.dirty || cNum.touched)"
+                                class="mt-1 text-[10px] text-red-500 uppercase tracking-widest font-semibold">
+                                Card number is required.
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs uppercase tracking-widest font-semibold text-gray-500 mb-2">Expiry
+                                Date (MM/YY)</label>
+                            <input type="text" [(ngModel)]="payment.expiry" name="cardExpiry" required #cExp="ngModel"
+                                class="block w-full bg-transparent border-0 border-b border-gray-300 px-0 py-3 text-gray-900 focus:ring-0 focus:border-secondary transition-colors"
+                                [class.border-red-400]="cExp.invalid && (cExp.dirty || cExp.touched)">
+                            <div *ngIf="cExp.invalid && (cExp.dirty || cExp.touched)"
+                                class="mt-1 text-[10px] text-red-500 uppercase tracking-widest font-semibold">
+                                Expiry date is required.
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                class="block text-xs uppercase tracking-widest font-semibold text-gray-500 mb-2">Security
+                                Code (CVV)</label>
+                            <input type="text" [(ngModel)]="payment.cvv" name="cardCvv" required #cCvv="ngModel"
+                                class="block w-full bg-transparent border-0 border-b border-gray-300 px-0 py-3 text-gray-900 focus:ring-0 focus:border-secondary transition-colors"
+                                [class.border-red-400]="cCvv.invalid && (cCvv.dirty || cCvv.touched)">
+                            <div *ngIf="cCvv.invalid && (cCvv.dirty || cCvv.touched)"
+                                class="mt-1 text-[10px] text-red-500 uppercase tracking-widest font-semibold">
+                                CVV is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UPI Details -->
+                    <div *ngIf="selectedPaymentMethod === 'UPI'" class="grid grid-cols-1 gap-y-8 animate-fade-in">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest font-semibold text-gray-500 mb-2">UPI
+                                ID</label>
+                            <input type="text" [(ngModel)]="payment.upiId" name="upiId" required #upi="ngModel"
+                                placeholder="username@upi"
+                                class="block w-full bg-transparent border-0 border-b border-gray-300 px-0 py-3 text-gray-900 focus:ring-0 focus:border-secondary transition-colors"
+                                [class.border-red-400]="upi.invalid && (upi.dirty || upi.touched)">
+                            <div *ngIf="upi.invalid && (upi.dirty || upi.touched)"
+                                class="mt-1 text-[10px] text-red-500 uppercase tracking-widest font-semibold">
+                                UPI ID is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COD Message -->
+                    <div *ngIf="selectedPaymentMethod === 'COD'"
+                        class="border border-gray-200 p-6 bg-accent/30 animate-fade-in">
+                        <h3 class="text-xs uppercase tracking-widest font-semibold text-gray-900 mb-2">Cash on Delivery
+                        </h3>
+                        <p class="text-sm text-gray-600 font-light leading-relaxed">
+                            Payment will be collected in cash upon delivery of your luxury items. Our concierge will
+                            contact you beforehand.
+                        </p>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Order Summary Sticky -->
+            <div class="lg:col-span-5 lg:sticky lg:top-32">
+                <div class="bg-surface lg:bg-accent/20 border border-gray-100 p-8 lg:p-10">
+                    <h2 class="text-lg font-display text-gray-900 mb-8 border-b border-gray-200 pb-4">Your Order</h2>
+
+                    <ul
+                        class="divide-y divide-gray-100 mb-8 max-h-[40vh] overflow-y-auto pr-2 font-light text-sm text-gray-600">
+                        <li *ngFor="let item of cartItems" class="py-4 flex items-start justify-between">
+                            <div class="flex-1 pr-4">
+                                <p class="text-gray-900">{{ item.productId.name }}</p>
+                                <p class="text-xs text-gray-400 mt-1">Qty: {{ item.quantity }}</p>
+                            </div>
+                            <span class="font-medium text-gray-900">₹{{ item.productId.price * item.quantity |
+                                number:'1.0-0' }}</span>
+                        </li>
+                    </ul>
+
+                    <div class="border-t border-gray-200 pt-6">
+                        <dl class="space-y-4 font-light text-sm text-gray-600">
+                            <div class="flex items-center justify-between">
+                                <dt>Subtotal</dt>
+                                <dd class="text-gray-900">₹{{ subtotal | number:'1.0-0' }}</dd>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <dt>Shipping</dt>
+                                <dd class="text-primary italic">Complimentary</dd>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <dt>Tax (18%)</dt>
+                                <dd class="text-gray-900">₹{{ tax | number:'1.0-0' }}</dd>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-gray-200 pt-6">
+                                <dt class="text-base font-semibold uppercase tracking-widest text-gray-900">Total</dt>
+                                <dd class="text-xl font-display text-gray-900">₹{{ totalAmount | number:'1.0-0' }}</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <div class="mt-10">
+                        <button (click)="placeOrder()" [disabled]="checkoutForm.invalid"
+                            class="w-full py-4 bg-secondary text-white text-xs font-semibold uppercase tracking-[0.2em] hover:bg-gray-900 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
+                            Complete Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

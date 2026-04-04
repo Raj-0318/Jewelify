@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Global Styles */
+body {
+    background-color: #F9FAFB;
+}
+
+@layer base {
+    *:focus {
+        outline: none !important;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus,
+    button:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slide-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.animate-slide-down {
+    animation: slide-down 0.3s ease-out forwards;
+}
+
+/* Scroll Triggered Animations */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-visible {
+    opacity: 1;
+    transform: translateY(0);
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Refinement - Jewellify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D4AF37', // Gold
+                        surface: '#F8F9FA', // Evening Gray
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--tw-bg-surface);
+        }
+    </style>
+</head>
+
+<body class="bg-surface p-20 flex flex-col items-center gap-20">
+
+    <div class="text-center">
+        <h1 class="text-4xl font-display font-bold mb-4">Jewellify Logo Final Polish</h1>
+        <p class="text-gray-500 italic">"Infinity Flourish" - Dark Black with Golden Hover</p>
+    </div>
+
+    <!-- Final Refined Preview -->
+    <div
+        class="bg-white p-24 rounded-[3rem] shadow-2xl flex flex-col items-center gap-10 w-full max-w-3xl border border-gray-100">
+        <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold mb-4">Interactive Logo (Golden
+            Hover)</span>
+
+        <div class="flex flex-col items-center gap-8 group cursor-pointer">
+            <!-- Increased Size: w-20 h-20 (5rem) -->
+            <svg class="w-20 h-20 text-black hover:text-primary transition-colors duration-500 fill-none stroke-current"
+                viewBox="0 0 100 40" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Precision Infinity Path -->
+                <path
+                    d="M15,20 C15,5 40,5 50,20 C60,35 85,35 85,20 C85,10 75,5 65,10 C55,15 45,25 35,30 C25,35 15,30 15,20 Z" />
+                <path d="M40,20 C45,10 55,10 60,20 C60,30 50,35 45,30 C35,25 25,15 25,10" opacity="0.3"
+                    stroke-width="0.5" />
+            </svg>
+
+            <div class="text-center">
+                <span
+                    class="text-6xl font-display font-bold text-black group-hover:text-primary transition-colors duration-500 tracking-tighter">Jewellify</span>
+                <p class="text-[9px] uppercase tracking-[0.5em] text-gray-500 mt-4 font-medium italic">Timeless
+                    Excellence</p>
+            </div>
+        </div>
+
+        <p class="text-[11px] text-gray-400 mt-4">Hover over the logo to see the transformation.</p>
+    </div>
+
+</body>
+
+</html>

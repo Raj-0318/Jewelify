@@ -1,0 +1,108 @@
+<div class="min-h-screen bg-surface pt-24 pb-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <!-- Page Header -->
+        <div
+            class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-12 mb-12 animate-fade-in">
+            <div>
+                <h1 class="text-4xl sm:text-5xl font-display text-gray-900 mb-2">My Wishlist</h1>
+                <p class="text-gray-500 font-light italic">Your curated collection of desired pieces.</p>
+            </div>
+            <a routerLink="/products"
+                class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary hover:text-gray-900 transition-colors pb-1">
+                Continue Exploring
+            </a>
+        </div>
+
+        @if (loading) {
+        <div class="flex justify-center py-32">
+            <div class="animate-spin rounded-full h-10 w-10 border-[1px] border-primary border-t-transparent"></div>
+        </div>
+        } @else {
+        <!-- Empty State -->
+        <div *ngIf="wishlistProducts.length === 0"
+            class="text-center py-32 border border-gray-100 bg-accent/10 animate-fade-in px-4">
+            <span class="text-[10px] uppercase tracking-[0.2em] text-primary mb-6 block font-semibold">Selection is
+                Empty</span>
+            <h3 class="text-2xl font-display text-gray-900 mb-6 font-light">You haven't saved any pieces yet.</h3>
+            <p class="text-gray-400 font-light mb-10 max-w-sm mx-auto leading-loose text-xs tracking-wide">
+                Discover our exclusive collections and find the perfect piece to add to your wishlist.
+            </p>
+            <a routerLink="/products"
+                class="inline-block px-12 py-4 border border-gray-900 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-900 hover:bg-gray-900 hover:text-white transition-all">
+                Start Exploring
+            </a>
+        </div>
+
+        <!-- Product Grid -->
+        <div *ngIf="wishlistProducts.length > 0"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 lg:gap-12">
+            <div *ngFor="let item of wishlistProducts"
+                class="group flex flex-col cursor-pointer relative animate-fade-in-up">
+
+                <!-- Image Container (Zip Card Style) -->
+                <div class="aspect-[3/4] w-full overflow-hidden bg-accent relative mb-6">
+                    <img [src]="item.productId.image" [alt]="item.productId.name"
+                        class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out">
+
+                    <!-- Status Badge -->
+                    @if (item.productId.stock === false) {
+                    <div
+                        class="absolute top-4 left-4 bg-secondary text-white text-[10px] uppercase tracking-widest px-3 py-1 font-semibold">
+                        Sold Out
+                    </div>
+                    } @else {
+                    <div
+                        class="absolute top-4 left-4 bg-white/95 text-gray-900 text-[10px] uppercase tracking-widest px-3 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-semibold shadow-sm">
+                        In Stock
+                    </div>
+                    }
+
+                    <!-- Remove Button (Refined style) -->
+                    <button (click)="removeFromWishlist(item.productId._id)"
+                        class="absolute top-4 left-4 bg-white/95 p-2 transition-opacity duration-300 shadow-sm hover:bg-secondary hover:text-white group/remove z-20"
+                        [class.opacity-0]="item.productId.stock !== false"
+                        [class.group-hover:opacity-100]="item.productId.stock !== false" title="Remove from Wishlist">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- Quick Action Overlay (Zip Card Style) -->
+                    <div
+                        class="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <a [routerLink]="['/product', item.productId._id]"
+                            class="block w-full text-center bg-white/95 backdrop-blur-sm text-gray-900 py-3 text-xs font-semibold uppercase tracking-widest hover:bg-secondary hover:text-white transition-colors">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Content (Zip Card Style) -->
+                <div class="flex flex-col text-center px-2">
+                    <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-[0.2em] mb-2">{{
+                        item.productId.category }}</p>
+                    <h3
+                        class="text-sm font-display text-gray-900 tracking-wide mb-2 group-hover:text-primary transition-colors line-clamp-1">
+                        <a [routerLink]="['/product', item.productId._id]">
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            {{ item.productId.name }}
+                        </a>
+                    </h3>
+                    <div class="flex items-center justify-center gap-3">
+                        <p class="text-sm font-medium text-gray-900">₹{{ item.productId.price | number }}</p>
+                        <span class="text-[10px] text-gray-400 font-light italic">Rating: {{ item.productId.rating ||
+                            '4.8' }}</span>
+                    </div>
+
+                    <!-- Separate Remove link for mobile/accessibility -->
+                    <button (click)="removeFromWishlist(item.productId._id)"
+                        class="mt-4 text-[10px] uppercase tracking-widest text-gray-400 hover:text-primary transition-colors border-t border-gray-100 pt-4 relative z-10">
+                        Remove from Wishlist
+                    </button>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

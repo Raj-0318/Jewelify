@@ -1,0 +1,147 @@
+<div class="space-y-12 animate-fade-in font-light" *ngIf="!isLoading()">
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
+        <div>
+            <h1 class="text-3xl font-display text-gray-900 mb-2">Admin Dashboard</h1>
+            <p class="text-sm text-gray-500 uppercase tracking-widest">Store Overview</p>
+        </div>
+        <div class="text-[10px] uppercase tracking-[0.2em] font-semibold text-gray-400">
+            Last updated: Just now
+        </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-gray-200 pb-12">
+        <!-- Total Sales -->
+        <div class="border border-gray-200 p-8 flex flex-col justify-between">
+            <div>
+                <p class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 mb-4">Total Revenue</p>
+                <h3 class="text-3xl font-display text-gray-900">₹{{ stats().totalSales | number:'1.0-0' }}</h3>
+            </div>
+            <div class="mt-8 pt-4 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-primary font-medium">+12.5%</span>
+                <span class="text-gray-400">vs last period</span>
+            </div>
+        </div>
+
+        <!-- Active Orders -->
+        <div class="border border-gray-200 p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
+            routerLink="/admin/orders">
+            <div>
+                <p class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 mb-4">Active Orders</p>
+                <h3 class="text-3xl font-display text-gray-900">{{ stats().activeOrders }}</h3>
+            </div>
+            <div
+                class="mt-8 pt-4 border-t border-gray-100 text-xs uppercase tracking-widest font-semibold text-gray-900 hover:text-primary transition-colors">
+                View Orders &rarr;
+            </div>
+        </div>
+
+        <!-- Total Products -->
+        <div class="border border-gray-200 p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
+            routerLink="/admin/products">
+            <div>
+                <p class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 mb-4">Total Inventory</p>
+                <h3 class="text-3xl font-display text-gray-900">{{ stats().totalProducts }}</h3>
+            </div>
+            <div
+                class="mt-8 pt-4 border-t border-gray-100 text-xs uppercase tracking-widest font-semibold text-gray-900 hover:text-primary transition-colors">
+                Manage Inventory &rarr;
+            </div>
+        </div>
+
+        <!-- Total Users -->
+        <div class="border border-gray-200 p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
+            routerLink="/admin/users">
+            <div>
+                <p class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 mb-4">Registered Users</p>
+                <h3 class="text-3xl font-display text-gray-900">{{ stats().totalUsers }}</h3>
+            </div>
+            <div
+                class="mt-8 pt-4 border-t border-gray-100 text-xs uppercase tracking-widest font-semibold text-gray-900 hover:text-primary transition-colors">
+                View Clients &rarr;
+            </div>
+        </div>
+    </div>
+
+    <!-- Layout Split -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <!-- Recent Orders (Spans 2 cols) -->
+        <div class="lg:col-span-2">
+            <div class="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
+                <h3 class="text-lg font-display text-gray-900">Recent Transactions</h3>
+                <a routerLink="/admin/orders"
+                    class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-gray-900 transition-colors">View
+                    All</a>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left" *ngIf="stats().recentOrders.length > 0; else noOrders">
+                    <thead class="border-b border-gray-200">
+                        <tr class="text-[10px] font-semibold text-gray-400 uppercase tracking-widest">
+                            <th class="py-4 font-normal">Order ID</th>
+                            <th class="py-4 font-normal">Client</th>
+                            <th class="py-4 font-normal text-right">Value</th>
+                            <th class="py-4 font-normal text-right">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 text-sm">
+                        <tr *ngFor="let order of stats().recentOrders" class="hover:bg-accent/20 transition-colors">
+                            <td class="py-4">
+                                <span class="text-gray-500">#{{ formatOrderId(order._id) }}</span>
+                            </td>
+                            <td class="py-4">
+                                <span class="text-gray-900">{{ order.userId?.name || 'Guest' }}</span>
+                            </td>
+                            <td class="py-4 text-right text-gray-900">₹{{ order.totalAmount | number:'1.0-0' }}</td>
+                            <td class="py-4 text-right">
+                                <span
+                                    class="text-[10px] uppercase tracking-widest font-semibold border border-gray-300 px-3 py-1 text-gray-600">
+                                    {{ order.status }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noOrders>
+                    <div class="py-12 text-center border border-gray-100">
+                        <p class="text-gray-500 text-sm">No recent transactions.</p>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <!-- Recent Reviews -->
+        <div>
+            <div class="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">
+                <h3 class="text-lg font-display text-gray-900">Latest Feedback</h3>
+                <a routerLink="/admin/reviews"
+                    class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-gray-900 transition-colors">View
+                    All</a>
+            </div>
+
+            <div class="space-y-6" *ngIf="stats().recentReviews.length > 0; else noReviews">
+                <div *ngFor="let review of stats().recentReviews" class="border border-gray-100 p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-sm font-medium text-gray-900">{{ review.user?.name || 'Anonymous' }}</span>
+                        <div class="text-[10px] uppercase tracking-widest text-primary">{{ review.rating }}/5</div>
+                    </div>
+                    <p class="text-xs text-gray-400 uppercase tracking-widest mb-4 truncate">{{ review.product?.name ||
+                        'Product' }}</p>
+                    <p class="text-sm text-gray-600 leading-relaxed italic">"{{ review.comment }}"</p>
+                </div>
+            </div>
+            <ng-template #noReviews>
+                <div class="py-12 text-center border border-gray-100">
+                    <p class="text-gray-500 text-sm">No recent feedback.</p>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<!-- Loading State -->
+<div *ngIf="isLoading()" class="flex flex-col items-center justify-center h-[60vh]">
+    <div class="animate-spin rounded-full h-10 w-10 border-[1px] border-primary border-t-transparent mb-4"></div>
+    <p class="text-xs uppercase tracking-widest text-gray-400">Loading Dashboard...</p>
+</div>

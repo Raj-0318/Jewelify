@@ -1,0 +1,141 @@
+    <form #productForm="ngForm" (ngSubmit)="onSubmit()"
+        class="max-w-5xl mx-auto space-y-12 animate-fade-in pb-20 font-light">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
+            <div>
+                <h1 class="text-3xl font-display text-gray-900 mb-2">
+                    {{ isEditMode ? 'Edit Collection Piece' : 'Add Collection Piece' }}
+                </h1>
+                <p class="text-sm text-gray-500 uppercase tracking-widest">
+                    {{ isEditMode ? 'Update specific piece details.' : 'Introduce a new piece to your catalog.' }}
+                </p>
+            </div>
+            <div class="flex items-center gap-4">
+                <a routerLink="/admin/products"
+                    class="px-6 py-3 border border-gray-300 text-[10px] uppercase tracking-widest font-semibold text-gray-600 hover:text-gray-900 hover:border-gray-900 transition-colors">
+                    Discard
+                </a>
+                <button type="submit" [disabled]="productForm.invalid"
+                    class="px-8 py-3 bg-secondary text-white text-[10px] uppercase tracking-widest font-semibold hover:bg-gray-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                    {{ isEditMode ? 'Save Edits' : 'Publish Piece' }}
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Main Content (Left Col) -->
+            <div class="lg:col-span-2 space-y-8">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-[10px] uppercase tracking-widest font-semibold text-gray-400 mb-2">Piece
+                            Title</label>
+                        <input type="text" [(ngModel)]="product.name" name="name" required #nameCtrl="ngModel"
+                            placeholder="e.g. 18k Gold Diamond Necklace"
+                            class="w-full border-0 border-b border-gray-300 bg-transparent py-3 text-lg text-gray-900 placeholder-gray-300 focus:ring-0 focus:border-gray-900 transition-colors"
+                            [class.border-red-300]="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched)">
+                        <div *ngIf="nameCtrl.invalid && (nameCtrl.dirty || nameCtrl.touched)"
+                            class="text-[10px] uppercase tracking-widest text-primary mt-2">Required field</div>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-[10px] uppercase tracking-widest font-semibold text-gray-400 mb-2 mt-8">Description</label>
+                        <textarea [(ngModel)]="product.description" name="description" rows="6" required #descCtrl="ngModel"
+                            placeholder="Detail the piece's craftsmanship, materials, and significance..."
+                            class="w-full border border-gray-300 rounded-none bg-transparent p-4 text-sm text-gray-900 placeholder-gray-300 focus:ring-0 focus:border-gray-900 transition-colors resize-none"
+                            [class.border-red-300]="descCtrl.invalid && (descCtrl.dirty || descCtrl.touched)"></textarea>
+                        <div *ngIf="descCtrl.invalid && (descCtrl.dirty || descCtrl.touched)"
+                            class="text-[10px] uppercase tracking-widest text-primary mt-2">Required field</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar (Right Col) -->
+            <div class="space-y-12">
+                <!-- Organization -->
+                <div>
+                    <h3
+                        class="text-sm font-display text-gray-900 uppercase tracking-widest mb-6 border-b border-gray-200 pb-2">
+                        Categorization</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <label
+                                class="block text-[10px] uppercase tracking-widest font-semibold text-gray-400 mb-2">Collection
+                                Category</label>
+                            <select [(ngModel)]="product.category" name="category" required #catCtrl="ngModel"
+                                class="w-full border-0 border-b border-gray-300 bg-transparent py-2 text-sm text-gray-900 focus:ring-0 focus:border-gray-900 transition-colors"
+                                [class.border-red-300]="catCtrl.invalid && (catCtrl.dirty || catCtrl.touched)">
+                                <option value="" disabled selected class="text-gray-400">Select collection</option>
+                                <option value="Necklaces">Necklaces</option>
+                                <option value="Rings">Rings</option>
+                                <option value="Earrings">Earrings</option>
+                                <option value="Bracelets">Bracelets</option>
+                            </select>
+                            <div *ngIf="catCtrl.invalid && (catCtrl.dirty || catCtrl.touched)"
+                                class="text-[10px] uppercase tracking-widest text-primary mt-2">Required field</div>
+                        </div>
+
+                        <div>
+                            <label
+                                class="block text-[10px] uppercase tracking-widest font-semibold text-gray-400 mb-2">Price
+                                Value (₹)</label>
+                            <input type="number" [(ngModel)]="product.price" name="price" required min="0.01" step="0.01"
+                                #priceCtrl="ngModel" placeholder="0.00"
+                                class="w-full border-0 border-b border-gray-300 bg-transparent py-2 text-lg text-gray-900 focus:ring-0 focus:border-gray-900 transition-colors"
+                                [class.border-red-300]="priceCtrl.invalid && (priceCtrl.dirty || priceCtrl.touched)">
+                            <div *ngIf="priceCtrl.invalid && (priceCtrl.dirty || priceCtrl.touched)"
+                                class="text-[10px] uppercase tracking-widest text-primary mt-2">
+                                <span *ngIf="priceCtrl.errors?.['required']">Required field</span>
+                                <span *ngIf="priceCtrl.errors?.['min']">Must be > 0</span>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex items-center justify-between">
+                            <label class="text-[10px] uppercase tracking-widest font-semibold text-gray-400">Availability
+                                Status</label>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" [(ngModel)]="product.stock" name="stock" class="sr-only peer">
+                                <div
+                                    class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-none peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-none after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary">
+                                </div>
+                                <span class="ml-3 text-xs font-medium text-gray-900 uppercase tracking-widest">{{
+                                    product.stock ? 'In Stock' : 'Sold Out' }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media -->
+                <div>
+                    <h3
+                        class="text-sm font-display text-gray-900 uppercase tracking-widest mb-6 border-b border-gray-200 pb-2">
+                        Visuals</h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label
+                                class="block text-[10px] uppercase tracking-widest font-semibold text-gray-400 mb-2">Image
+                                URL</label>
+                            <input type="url" [(ngModel)]="product.image" name="image" required #imgCtrl="ngModel"
+                                placeholder="https://..."
+                                class="w-full border-0 border-b border-gray-300 bg-transparent py-2 text-xs text-gray-900 focus:ring-0 focus:border-gray-900 transition-colors"
+                                [class.border-red-300]="imgCtrl.invalid && (imgCtrl.dirty || imgCtrl.touched)">
+                            <div *ngIf="imgCtrl.invalid && (imgCtrl.dirty || imgCtrl.touched)"
+                                class="text-[10px] uppercase tracking-widest text-primary mt-2">Required field</div>
+                        </div>
+
+                        <!-- Image Preview -->
+                        <div
+                            class="border border-gray-200 bg-accent h-64 flex flex-col items-center justify-center relative overflow-hidden group">
+                            <ng-container *ngIf="product.image; else noImage">
+                                <img [src]="product.image" class="absolute inset-0 w-full h-full object-cover">
+                            </ng-container>
+                            <ng-template #noImage>
+                                <span class="text-[10px] uppercase tracking-widest text-gray-400">No Image Subject</span>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
