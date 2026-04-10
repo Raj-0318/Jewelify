@@ -5,11 +5,12 @@ import { ProductService, ProductModel } from '../../services/product';
 import { WishlistService } from '../../services/wishlist.service';
 import { AuthService } from '../../services/auth';
 import { NotificationService } from '../../services/notification.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })
@@ -25,6 +26,8 @@ export class ProductList implements OnInit {
   filteredProducts: ProductModel[] = [];
   categories: string[] = ['All', 'Necklaces', 'Rings', 'Earrings', 'Bracelets'];
   selectedCategory: string = 'All';
+  searchTerm: string = '';
+  sortBy: string = 'featured';
 
   // Pagination
   currentPage = 1;
@@ -48,10 +51,11 @@ export class ProductList implements OnInit {
         this.route.queryParams.subscribe(params => {
           const category = params['category'];
           if (category) {
-            this.filterCategory(category);
+            this.selectedCategory = this.categories.find(c => c.toLowerCase() === category.toLowerCase()) || category;
           } else {
-            this.filterCategory('All');
+            this.selectedCategory = 'All';
           }
+          this.applyFilters();
         });
 
         this.cdr.detectChanges();
@@ -66,20 +70,56 @@ export class ProductList implements OnInit {
   }
 
   filterCategory(category: string) {
-    if (category.toLowerCase() === 'all') {
-      this.selectedCategory = 'All';
-      this.filteredProducts = this.products;
-    } else {
-      // Find the display name from the categories array
-      const matchingCategory = this.categories.find(c => c.toLowerCase() === category.toLowerCase());
-      this.selectedCategory = matchingCategory || category;
+    this.selectedCategory = category;
+    this.applyFilters();
+  }
 
-      this.filteredProducts = this.products.filter(p =>
-        p.category.toLowerCase() === category.toLowerCase()
+  onSearch() {
+    this.applyFilters();
+  }
+
+  applyFilters() {
+    let tempProducts = [...this.products];
+
+    // Category Filter
+    if (this.selectedCategory.toLowerCase() !== 'all') {
+      tempProducts = tempProducts.filter(p => 
+        p.category.toLowerCase() === this.selectedCategory.toLowerCase()
       );
     }
-    this.currentPage = 1; // Reset to first page on filter change
+
+    // Search Filter
+    if (this.searchTerm) {
+      const term = this.searchTerm.toLowerCase();
+      tempProducts = tempProducts.filter(p => 
+        p.name.toLowerCase().includes(term) || 
+        p.description.toLowerCase().includes(term)
+      );
+    }
+
+    // Sorting
+    this.sortProducts(tempProducts);
+
+    this.filteredProducts = tempProducts;
+    this.currentPage = 1; // Reset to first page
     this.cdr.detectChanges();
+  }
+
+  sortProducts(products: ProductModel[]) {
+    switch (this.sortBy) {
+      case 'price-low':
+        products.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-high':
+        products.sort((a, b) => b.price - a.price);
+        break;
+      case 'rating':
+        products.sort((a, b) => b.rating - a.rating);
+        break;
+      default:
+        // Default 'featured' or no specific sort
+        break;
+    }
   }
 
   nextPage() {

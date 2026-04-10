@@ -39,6 +39,12 @@ export const routes: Routes = [
     },
     { path: 'about', loadComponent: () => import('./components/about/about').then(m => m.About) },
     { path: 'contact', loadComponent: () => import('./components/contact/contact').then(m => m.Contact) },
+    { path: 'custom-jewelry', loadComponent: () => import('./components/custom-jewelry/custom-jewelry').then(m => m.CustomJewelry) },
+    { path: 'care-repair', loadComponent: () => import('./components/care-repair/care-repair').then(m => m.CareRepair) },
+    { path: 'shipping-returns', loadComponent: () => import('./components/shipping-returns/shipping-returns').then(m => m.ShippingReturns) },
+    { path: 'privacy', loadComponent: () => import('./components/privacy/privacy').then(m => m.Privacy) },
+    { path: 'terms', loadComponent: () => import('./components/terms/terms').then(m => m.Terms) },
+    { path: 'faq', loadComponent: () => import('./components/faq/faq').then(m => m.Faq) },
     { path: 'login', component: Login },
     { path: 'register', component: Register },
     { path: '**', redirectTo: '' }
