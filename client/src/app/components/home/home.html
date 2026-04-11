@@ -1,206 +1,214 @@
-<!-- Hero Section -->
-<section class="relative bg-surface pt-24 pb-32 flex items-center min-h-[90vh] overflow-hidden">
-    <div class="absolute inset-0 z-0">
-        <div class="absolute inset-0 bg-gradient-to-b from-accent/40 to-surface"></div>
+<!-- Hero Section: The Grand Entrance -->
+<section class="relative min-h-screen bg-surface overflow-hidden flex items-center">
+    <!-- Decorative Text Background -->
+    <div
+        class="absolute -top-20 -left-10 text-[20vw] font-display text-accent/20 leading-none select-none pointer-events-none">
+        Jewellify
     </div>
-    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center w-full">
-        <span class="text-xs sm:text-sm tracking-[0.3em] uppercase text-primary font-semibold mb-6">Welcome
-            to
-            Jewellify</span>
-        <h1 class="text-5xl sm:text-7xl font-display text-gray-900 mb-8 max-w-4xl mx-auto leading-[1.1]">
-            Beautiful & <br /> <span class="italic text-gray-400 font-light">High Quality</span> Jewelry
-        </h1>
-        <p class="text-lg text-gray-600 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-            Explore our collection of beautiful rings, necklaces, and accessories designed for your special moments.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full sm:w-auto">
-            <a routerLink="/products"
-                class="w-full sm:w-auto px-10 py-4 bg-secondary text-white text-xs font-semibold uppercase tracking-[0.2em] hover:bg-gray-800 transition-colors duration-300 text-center">
-                Shop Now
-            </a>
-            <a routerLink="/products"
-                class="w-full sm:w-auto px-10 py-4 border border-secondary text-secondary text-xs font-semibold uppercase tracking-[0.2em] hover:bg-accent transition-colors duration-300 text-center">
-                View Categories
-            </a>
-        </div>
-    </div>
-</section>
 
-<!-- Shop by Category Section -->
-<section class="py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <span class="text-xs font-semibold uppercase tracking-widest text-primary mb-3 block">Curated
-                Selection</span>
-            <h2 class="text-4xl sm:text-5xl font-display text-gray-900 mb-4">Shop by Category</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Category 1 -->
-            <a routerLink="/products" [queryParams]="{category: 'Rings'}"
-                class="group relative h-96 overflow-hidden block">
-                <img src="https://i.pinimg.com/736x/32/28/08/3228080e32478d6aa34e9eb5824fc370.jpg" alt="Rings"
-                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
-                <div class="absolute bottom-10 left-10">
-                    <h3 class="text-white text-3xl font-display italic mb-2">Rings</h3>
-                    <span
-                        class="text-white/80 text-xs font-semibold uppercase tracking-widest group-hover:text-primary transition-colors">Explore
-                        Collection &rarr;</span>
-                </div>
-            </a>
-            <!-- Category 2 -->
-            <a routerLink="/products" [queryParams]="{category: 'Necklaces'}"
-                class="group relative h-96 overflow-hidden block">
-                <img src="https://i.pinimg.com/736x/5e/61/93/5e61932f7213b5dc878ad235132a9e5a.jpg" alt="Necklaces"
-                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
-                <div class="absolute bottom-10 left-10">
-                    <h3 class="text-white text-3xl font-display italic mb-2">Necklaces</h3>
-                    <span
-                        class="text-white/80 text-xs font-semibold uppercase tracking-widest group-hover:text-primary transition-colors">Explore
-                        Collection &rarr;</span>
-                </div>
-            </a>
-            <!-- Category 3 -->
-            <a routerLink="/products" [queryParams]="{category: 'Bracelets'}"
-                class="group relative h-96 overflow-hidden block">
-                <img src="https://i.pinimg.com/736x/55/2b/e0/552be00e1032546b0f2abba46cc09593.jpg" alt="Bracelets"
-                    class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
-                <div class="absolute bottom-10 left-10">
-                    <h3 class="text-white text-3xl font-display italic mb-2">Bracelets</h3>
-                    <span
-                        class="text-white/80 text-xs font-semibold uppercase tracking-widest group-hover:text-primary transition-colors">Explore
-                        Collection &rarr;</span>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- Features Section -->
-<section class="py-20 bg-surface border-y border-gray-100">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 lg:gap-12 md:divide-x divide-gray-100">
-            <div class="flex flex-col items-center text-center px-4">
-                <svg class="w-8 h-8 text-primary mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    stroke-width="1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-900 mb-2">Certified Authenticity
-                </h3>
-                <p class="text-gray-500 text-sm font-light">Every piece meticulously verified.</p>
+    <div class="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-12 w-full grid lg:grid-cols-2 gap-20 items-center">
+        <!-- Content Side -->
+        <div class="flex flex-col items-start animate-fade-in-up">
+            <div class="flex items-center gap-4 mb-8">
+                <span class="h-px w-12 bg-primary"></span>
+                <span class="text-xs tracking-[0.4em] uppercase text-primary font-bold">The Art of Artisanal Jewelry</span>
             </div>
 
-            <div class="flex flex-col items-center text-center px-4">
-                <svg class="w-8 h-8 text-primary mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    stroke-width="1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                </svg>
-                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-900 mb-2">Secure Payments</h3>
-                <p class="text-gray-500 text-sm font-light">100% encrypted transactions.</p>
-            </div>
+            <h1 class="text-6xl md:text-8xl font-display text-secondary mb-10 leading-[0.9] tracking-tight">
+                Curating <br />
+                <span class="italic font-light text-gray-400">Timeless</span> <br />
+                Elegance
+            </h1>
 
-            <div class="flex flex-col items-center text-center px-4">
-                <svg class="w-8 h-8 text-primary mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    stroke-width="1">
-                    <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
-                </svg>
-                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-900 mb-2">Free Delivery
-                </h3>
-                <p class="text-gray-500 text-sm font-light">Worldwide insured shipping.</p>
-            </div>
+            <p class="text-lg text-gray-500 max-w-md mb-12 font-light leading-relaxed">
+                Discover a curated landscape of high-jewelry, where every piece is a testament to master craftsmanship and
+                exquisite design.
+            </p>
 
-            <div class="flex flex-col items-center text-center px-4">
-                <svg class="w-8 h-8 text-primary mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    stroke-width="1">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 class="text-xs font-semibold uppercase tracking-widest text-gray-900 mb-2">Custom Services</h3>
-                <p class="text-gray-500 text-sm font-light">24/7 dedicated support.</p>
+            <div class="flex flex-wrap gap-8 items-center">
+                <a routerLink="/products"
+                    class="btn-gold-wipe px-12 py-5 bg-secondary text-white text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-500 hover:shadow-[0_10px_20px_-5px_rgba(212,175,55,0.4)]">
+                    <span>Shop the Collection</span>
+                    <div class="wipe-bg"></div>
+                </a>
+                <a routerLink="/products"
+                    class="text-[10px] uppercase tracking-[0.3em] font-bold text-secondary border-b border-secondary/30 pb-2 hover:border-primary transition-colors">
+                    Our Story
+                </a>
+            </div>
+        </div>
+
+        <!-- Image Side (Asymmetric) -->
+        <div class="relative w-full aspect-[4/5] lg:aspect-auto lg:h-[750px] animate-fade-in"
+            style="animation-delay: 200ms;">
+            <div class="absolute inset-0 bg-accent -rotate-3 translate-x-4 translate-y-4 -z-10"></div>
+            <img src="https://i.pinimg.com/736x/48/08/20/48082010533c53df76636e87a7e704aa.jpg" alt="Editorial Jewelry"
+                class="w-full h-full object-cover shadow-2xl">
+
+            <!-- Floating Accessory -->
+            <div class="absolute -bottom-10 -left-10 hidden xl:block w-48 h-64 bg-white p-2 shadow-xl animate-float">
+                <img src="https://i.pinimg.com/736x/50/3a/54/503a548f713f0892ebf8a2f095056f95.jpg"
+                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Trending Products Section -->
+<!-- The Collections Gallery -->
+<section class="py-32 bg-white flex flex-col items-center">
+    <div class="w-full max-w-[1400px] px-6 lg:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-20 gap-8">
+            <h2 class="text-5xl font-display text-secondary leading-none">The Collections</h2>
+            <div class="h-px flex-1 bg-gray-100 mx-8 hidden md:block"></div>
+            <p class="text-xs uppercase tracking-[0.3em] text-gray-400 font-bold">Summer / Autumn 2024</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:min-h-[800px]">
+            <!-- Hero Piece -->
+            <div class="md:col-span-12 lg:col-span-7 h-[500px] lg:h-auto">
+                <a routerLink="/products" [queryParams]="{category: 'Necklaces'}"
+                    class="group relative w-full h-full overflow-hidden block">
+                    <img src="https://i.pinimg.com/736x/ec/72/be/ec72befcbc01c3a262837c16b7aa9301.jpg"
+                        class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-all duration-700"></div>
+                    <div
+                        class="absolute top-10 left-10 text-white z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="text-[10px] uppercase tracking-[0.5em] block mb-2">High Jewelry</span>
+                        <h3 class="text-4xl font-display italic">Statement Necklaces</h3>
+                    </div>
+                    <div
+                        class="absolute bottom-10 right-10 flex items-center gap-4 text-white uppercase text-[10px] tracking-widest font-bold">
+                        Learn More <span class="w-10 h-px bg-white"></span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Side Stack -->
+            <div class="md:col-span-12 lg:col-span-5 grid grid-rows-2 gap-8 h-[600px] lg:h-auto">
+                <a routerLink="/products" [queryParams]="{category: 'Rings'}"
+                    class="group relative w-full h-full overflow-hidden block">
+                    <img src="https://i.pinimg.com/1200x/24/fb/b9/24fbb9a0207bc270acceb0bceb8771b3.jpg"
+                        class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                    <div
+                        class="absolute top-10 left-10 text-white z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="text-[10px] uppercase tracking-[0.5em] block mb-2">High Jewelry</span>
+                        <h3 class="text-3xl font-display italic transition-transform duration-700 group-hover:scale-105">Artisanal Rings</h3>
+                    </div>
+                </a>
+                <a routerLink="/products" [queryParams]="{category: 'Bracelets'}"
+                    class="group relative w-full h-full overflow-hidden block">
+                    <img src="https://i.pinimg.com/1200x/80/44/e1/8044e1f258fd46c4a2314c435547ba63.jpg"
+                        class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                    <div
+                        class="absolute top-10 left-10 text-white z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="text-[10px] uppercase tracking-[0.5em] block mb-2">High Jewelry</span>
+                        <h3 class="text-3xl font-display italic transition-transform duration-700 group-hover:scale-105">Ethereal Bracelets</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Bar: The Jewelify Promise -->
+<section class="py-24 bg-white border-y border-gray-100 mb-20">
+    <div
+        class="max-w-[1400px] mx-auto px-6 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 justify-between items-start">
+        <div class="flex flex-col gap-2">
+            <span class="text-[10px] uppercase tracking-[0.4em] font-bold text-secondary">Certified Authenticity</span>
+            <p class="text-[10px] text-gray-400 font-light max-w-[200px]">Every piece meticulously verified by our
+                experts.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+            <span class="text-[10px] uppercase tracking-[0.4em] font-bold text-secondary">Global Logistics</span>
+            <p class="text-[10px] text-gray-400 font-light max-w-[200px]">Complimentary insured worldwide shipping.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+            <span class="text-[10px] uppercase tracking-[0.4em] font-bold text-secondary">Bespoke Concierge</span>
+            <p class="text-[10px] text-gray-400 font-light max-w-[200px]">Personalized 24/7 dedicated client support.</p>
+        </div>
+        <div class="flex flex-col gap-2">
+            <span class="text-[10px] uppercase tracking-[0.4em] font-bold text-secondary">Heritage Craft</span>
+            <p class="text-[10px] text-gray-400 font-light max-w-[200px]">Traditional techniques passed through
+                generations.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Creations: The Gallery -->
 <section class="py-32 bg-surface">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div class="max-w-xl">
-                <span class="text-xs font-semibold uppercase tracking-widest text-primary mb-3 block">Bestsellers</span>
-                <h2 class="text-4xl sm:text-5xl font-display text-gray-900 mb-4">Trending Now</h2>
-                <p class="text-lg text-gray-500 font-light">Beautiful pieces selected for you.</p>
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+            <div class="max-w-2xl">
+                <span class="text-xs uppercase tracking-[0.3em] text-primary font-bold mb-6 block">The Highlight</span>
+                <h2 class="text-6xl font-display text-secondary leading-tight">Curated <br /> Creations</h2>
             </div>
             <a routerLink="/products"
-                class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.1em] text-secondary hover:text-primary transition-colors pb-1 border-b border-secondary hover:border-primary">
-                View All Collection <span aria-hidden="true">&rarr;</span>
+                class="group flex items-center gap-6 text-[10px] uppercase tracking-[0.4em] font-bold text-secondary">
+                <span>View Full Inventory</span>
+                <span class="w-16 h-px bg-secondary group-hover:w-24 transition-all duration-500"></span>
             </a>
         </div>
 
         @if (loading) {
-        <div class="flex justify-center py-24">
-            <div class="animate-spin rounded-full h-10 w-10 border-[1px] border-primary border-t-transparent"></div>
+        <div class="flex justify-center py-40">
+            <div class="animate-spin rounded-full h-8 w-8 border-[1px] border-primary border-t-transparent"></div>
         </div>
         } @else {
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             @for (product of featuredProducts; track product._id) {
-            <div class="group flex flex-col cursor-pointer relative">
-                <!-- Image Container -->
-                <div class="aspect-[3/4] w-full overflow-hidden bg-accent relative mb-6">
+            <div class="group relative flex flex-col pt-8 animate-fade-in-up"
+                [style.animation-delay]="($index * 150) + 'ms'">
+                <!-- Index Counter -->
+                <div class="absolute top-0 left-0 text-[10px] font-bold text-gray-200 uppercase tracking-widest">
+                    Collection 0{{ $index + 1 }}
+                </div>
+
+                <!-- Image Gallery Card -->
+                <div
+                    class="aspect-[3/4] overflow-hidden bg-accent relative mb-8 group-hover:shadow-2xl transition-all duration-700">
                     <img [src]="product.image" [alt]="product.name"
-                        class="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out">
+                        class="h-full w-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-110">
 
-                    @if (!product.stock) {
-                    <div
-                        class="absolute top-4 left-4 bg-secondary text-white text-[10px] uppercase tracking-widest px-3 py-1 font-semibold">
-                        Sold Out
+                    <!-- Tags -->
+                    <div class="absolute top-6 left-6 z-10">
+                        @if (!product.stock) {
+                        <span
+                            class="bg-secondary text-white text-[8px] uppercase tracking-[0.3em] font-bold px-3 py-1">Limited</span>
+                        }
                     </div>
-                    } @else {
-                    <div
-                        class="absolute top-4 left-4 bg-white/95 text-gray-900 text-[10px] uppercase tracking-widest px-3 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-semibold shadow-sm">
-                        In Stock
-                    </div>
-                    }
 
-                    <!-- Wishlist Button -->
-                    <button (click)="toggleWishlist($event, product._id)"
-                        class="absolute top-4 right-4 bg-white/50 backdrop-blur-md p-2 rounded-full transition-colors z-10 hover:bg-white"
-                        [ngClass]="isInWishlist(product._id) ? 'text-red-600' : 'text-gray-600 hover:text-red-500'">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-
-                    <!-- Quick View -->
+                    <!-- Quick Shop Overlay (Bento-style) -->
                     <div
-                        class="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        class="absolute inset-x-4 bottom-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 bg-white/90 backdrop-blur-md p-6 flex flex-col gap-4">
+                        <p class="text-[10px] text-gray-500 font-light line-clamp-2 leading-relaxed">
+                            {{ product.description }}</p>
                         <a [routerLink]="['/product', product._id]"
-                            class="block w-full text-center bg-white/95 backdrop-blur-sm text-gray-900 py-3 text-xs font-semibold uppercase tracking-widest hover:bg-secondary hover:text-white transition-colors">
-                            View Details
+                            class="btn-gold-wipe text-center bg-secondary text-white py-3 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500">
+                            <span>View Details</span>
+                            <div class="wipe-bg"></div>
                         </a>
                     </div>
                 </div>
 
-                <!-- Content -->
-                <div class="flex flex-col text-center">
-                    <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-[0.15em] mb-2">{{
-                        product.category }}</p>
-                    <h3
-                        class="text-sm font-display text-gray-900 tracking-wide mb-2 group-hover:text-primary transition-colors line-clamp-1">
-                        <a [routerLink]="['/product', product._id]">
-                            <span aria-hidden="true" class="absolute inset-0"></span>
-                            {{ product.name }}
-                        </a>
-                    </h3>
-                    <p class="text-sm font-medium text-gray-900">₹{{ product.price | number }}</p>
+                <!-- Info Block -->
+                <div class="flex flex-col px-1">
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-primary font-bold mb-3">
+                        {{ product.category }}</span>
+                    <h3 class="text-xl font-display text-secondary mb-4">{{ product.name }}</h3>
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        <span class="text-sm font-light text-secondary">₹{{ product.price | number }}</span>
+                        <!-- Wishlist Tag -->
+                        <button (click)="toggleWishlist($event, product._id)"
+                            class="text-gray-400 hover:text-red-500 transition-colors">
+                            <svg class="w-4 h-4" [class.fill-red-500]="isInWishlist(product._id)"
+                                [class.stroke-current]="!isInWishlist(product._id)" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
             }
@@ -209,48 +217,87 @@
     </div>
 </section>
 
-<!-- Brand Story Section -->
-<section class="flex flex-col lg:flex-row min-h-[600px] bg-white border-t border-gray-100 relative">
-    <div class="w-full lg:w-1/2 p-12 md:p-16 lg:p-24 flex flex-col justify-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-primary mb-6 block">Our Heritage</span>
-        <h2 class="text-4xl sm:text-5xl font-display text-gray-900 mb-8 leading-tight">Master Craftsmanship <br /> &
-            Timeless Elegance</h2>
-        <p class="text-lg text-gray-600 font-light leading-relaxed mb-10 max-w-lg">
-            Every piece of jewelry we create tells a unique story. With decades of expertise passed down through
-            generations, our artisans pour their passion into creating exquisite designs that stand the test of time and
-            become cherished family heirlooms.
-        </p>
-        <div>
-            <a routerLink="/products"
-                class="inline-flex items-center gap-3 px-8 py-4 border border-gray-900 text-gray-900 text-xs font-semibold uppercase tracking-[0.2em] hover:bg-gray-900 hover:text-white transition-colors duration-300">
-                Discover Our Craft
-            </a>
+<!-- Brand Heritage: The Soul of Jewelify -->
+<section class="relative py-40 overflow-hidden bg-white">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-24 items-center">
+        <!-- Text Content -->
+        <div class="flex flex-col gap-12">
+            <div class="space-y-6">
+                <span class="text-xs uppercase tracking-[0.3em] text-primary font-bold">The Heritage</span>
+                <h2 class="text-6xl font-display text-secondary leading-tight">
+                    Where Legacy <br />
+                    Meets <span class="italic font-light">Innovation</span>
+                </h2>
+                <div class="h-px w-24 bg-primary/30"></div>
+            </div>
+
+            <p class="text-lg text-gray-500 font-light leading-relaxed max-w-xl">
+                Founded on the principles of aesthetic purity and uncompromising quality, Jewelify works with the world's
+                most talented artisans to transform the earth's rarest materials into wearable art. Our vision is to create
+                heirlooms that transcend time, carrying stories of beauty and devotion through the centuries.
+            </p>
+
+            <div class="flex items-center gap-12 pt-8">
+                <div class="flex flex-col">
+                    <span class="text-3xl font-serif text-secondary mb-1">20+</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Years of Excellence</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-3xl font-serif text-secondary mb-1">150+</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400 font-bold">Artisan Collaborations</span>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="w-full lg:w-1/2 min-h-[400px] lg:min-h-full relative overflow-hidden bg-accent">
-        <img src="https://i.pinimg.com/1200x/b1/9c/63/b19c6385573dad1f8e8dc79f1cbcb7a9.jpg" alt="Jewelry Craftsmanship"
-            class="absolute inset-0 w-full h-full object-cover">
+
+        <!-- Collage Side -->
+        <div class="relative min-h-[600px] flex items-center justify-center">
+            <!-- Main Image -->
+            <div class="w-[80%] aspect-[4/5] bg-accent relative overflow-hidden group">
+                <img src="https://i.pinimg.com/736x/87/64/dd/8764dd34b7c0342a904005b94ce1d6b5.jpg"
+                    class="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110">
+            </div>
+
+            <!-- Glassmorphism Card -->
+            <div class="absolute top-[10%] right-0 w-[50%] p-10 bg-white/40 backdrop-blur-xl border border-white/20 shadow-2xl animate-fade-in"
+                style="animation-delay: 400ms;">
+                <h3 class="text-sm font-bold text-secondary uppercase tracking-[0.2em] mb-4">Artisanal Process</h3>
+                <p class="text-xs font-light text-gray-700 leading-loose">
+                    Every stone is hand-selected and every setting is hand-crafted in our private atelier in Paris.
+                </p>
+            </div>
+
+            <!-- Accent Image -->
+            <div class="absolute bottom-0 -left-10 w-[40%] aspect-square bg-white p-4 shadow-2xl animate-fade-in-up"
+                style="animation-delay: 600ms;">
+                <img src="https://i.pinimg.com/1200x/cc/29/99/cc2999f4782bf8c8378df72314c0a6bd.jpg"
+                    class="w-full h-full object-cover">
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Newsletter Section -->
-<section class="border-t border-gray-100 bg-accent/30 py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
-        <span class="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Our Newsletter</span>
-        <h2 class="text-3xl font-display text-gray-900 sm:text-4xl mb-4">
-            Join Our Mailing List
-        </h2>
-        <p class="mx-auto mt-2 max-w-xl text-lg font-light text-gray-600 mb-10">
-            Subscribe to receive updates on new products, sales, and the latest jewelry trends.
-        </p>
-        <form class="w-full max-w-md flex flex-col sm:flex-row gap-4">
-            <input name="email" type="email" autocomplete="email" required
-                class="flex-1 min-w-0 appearance-none bg-transparent border-b border-gray-300 px-0 py-3 text-base text-gray-900 placeholder-gray-400 focus:border-secondary focus:ring-0 focus:outline-none transition-colors"
-                placeholder="Enter your email address">
-            <button type="submit"
-                class="w-full sm:w-auto px-8 py-3 bg-secondary text-white text-xs font-semibold uppercase tracking-[0.1em] hover:bg-gray-900 transition-colors">
-                Subscribe
-            </button>
-        </form>
+<!-- Our Newsletter: The Inner Circle -->
+<section class="bg-accent/40 py-32 border-t border-gray-100">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
+        <div class="max-w-3xl mx-auto flex flex-col items-center gap-8">
+            <span class="text-[10px] uppercase tracking-[0.5em] text-primary font-bold">Stay Enriched</span>
+            <h2 class="text-5xl font-display text-secondary leading-tight">Join The Inner Circle</h2>
+            <p class="text-gray-500 font-light leading-relaxed">Subscribe to receive exclusive access to private collection
+                launches, artisanal insights, and world-class jewelry trends.</p>
+
+            <form class="w-full max-w-md mt-8 group">
+                <div class="relative border-b border-secondary/20 py-2 focus-within:border-primary transition-colors">
+                    <input type="email" placeholder="Email Address"
+                        class="w-full bg-transparent border-none px-0 text-center py-4 text-sm font-light text-secondary placeholder:text-gray-400 placeholder:uppercase focus:ring-0">
+                    <button type="submit"
+                        class="absolute right-0 top-1/2 -translate-y-1/2 text-[10px] uppercase tracking-[0.2em] font-bold text-secondary hover:text-primary transition-colors">
+                        Join &rarr;
+                    </button>
+                </div>
+                <p class="mt-6 text-[8px] text-gray-400 uppercase tracking-widest leading-loose">
+                    By joining, you agree to our privacy policy and terms of collection.
+                </p>
+            </form>
+        </div>
     </div>
 </section>

@@ -6,7 +6,6 @@ import { CartService } from '../../services/cart';
 import { AuthService } from '../../services/auth';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../services/notification.service';
-import { ReviewService, ReviewModel } from '../../services/review.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -20,28 +19,19 @@ export class ProductDetail implements OnInit {
   private router = inject(Router);
   private productService = inject(ProductService);
   private cartService = inject(CartService);
-  public authService = inject(AuthService); // Changed to public for template access
+  private authService = inject(AuthService);
   private cdr = inject(ChangeDetectorRef);
   private notification = inject(NotificationService);
-  private reviewService = inject(ReviewService);
 
   product: ProductModel | undefined;
   quantity: number = 1;
   errorMessage: string = '';
-  
-  // Reviews
-  reviews: ReviewModel[] = [];
-  newReview = {
-    rating: 5,
-    comment: ''
-  };
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
         this.loadProduct(id);
-        this.loadReviews(id);
       }
     });
   }
@@ -58,34 +48,6 @@ export class ProductDetail implements OnInit {
         this.cdr.detectChanges();
       }
     });
-  }
-
-  loadReviews(productId: string) {
-    this.reviewService.getReviewsByProduct(productId).subscribe({
-      next: (data) => {
-        this.reviews = data;
-        this.cdr.detectChanges();
-      }
-    });
-  }
-
-  submitReview() {
-    if (!this.authService.currentUser()) {
-      this.router.navigate(['/login']);
-      return;
-    }
-
-    if (this.product && this.newReview.comment) {
-      this.reviewService.addReview(this.product._id, this.newReview.rating, this.newReview.comment).subscribe({
-        next: (review) => {
-          this.notification.success('Your appreciation has been recorded.');
-          this.reviews.unshift(review);
-          this.newReview = { rating: 5, comment: '' };
-          this.cdr.detectChanges();
-        },
-        error: () => this.notification.error('Failed to submit review.')
-      });
-    }
   }
 
   addToCart() {

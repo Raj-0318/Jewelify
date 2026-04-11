@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -9,7 +9,26 @@ import { RouterLink } from '@angular/router';
     templateUrl: './about.html',
     styleUrl: './about.css'
 })
-export class About {
+export class About implements AfterViewInit {
+    constructor(private el: ElementRef) {}
+
+    ngAfterViewInit() {
+        if (typeof IntersectionObserver === 'undefined') return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    (entry.target as HTMLElement).classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const targets = this.el.nativeElement.querySelectorAll('.scroll-animate');
+        if (targets) {
+            targets.forEach((t: any) => observer.observe(t));
+        }
+    }
+
     stats = [
         { label: 'Happy Clients', value: '15k+' },
         { label: 'Bespoke Creations', value: '1.2k+' },

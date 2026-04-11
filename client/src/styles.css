@@ -46,8 +46,26 @@ body {
     }
 }
 
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+}
+
 .animate-fade-in-up {
-    animation: fade-in-up 0.5s ease-out forwards;
+    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
 }
 
 .animate-slide-down {
@@ -58,10 +76,51 @@ body {
 .scroll-animate {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .scroll-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Continuous Forward-Wipe Gold Hover Effect */
+@keyframes gold-slide-in {
+    from { transform: translateX(-101%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes gold-slide-out {
+    from { transform: translateX(0); }
+    to { transform: translateX(101%); }
+}
+
+.btn-gold-wipe {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-gold-wipe .wipe-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #B38728, #FFD700, #B38728);
+    transform: translateX(-101%);
+    z-index: -1;
+}
+
+.btn-gold-wipe:hover .wipe-bg {
+    animation: gold-slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.btn-gold-wipe:not(:hover) .wipe-bg {
+    animation: gold-slide-out 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.btn-gold-wipe span {
+    transition: color 0.5s ease;
+}
+
+.btn-gold-wipe:hover span {
+    color: #1A1A1A;
 }
