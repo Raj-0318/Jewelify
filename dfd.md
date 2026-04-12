@@ -1,6 +1,6 @@
-# TechNest System Diagrams
+# Jewelify System Diagrams
 
-This document contains the Data Flow Diagrams (DFD), Use Case Diagram, Entity-Relationship (ER) Diagram, and Activity Diagram for the TechNest E-Commerce Platform.
+This document contains the Data Flow Diagrams (DFD), Use Case Diagram, Entity-Relationship (ER) Diagram, and Activity Diagram for the Jewelify E-Commerce Platform.
 
 ---
 
@@ -8,7 +8,7 @@ This document contains the Data Flow Diagrams (DFD), Use Case Diagram, Entity-Re
 
 ### Level 0 DFD (Context Diagram)
 
-The Level 0 DFD represents the entire TechNest system as a single process interacting with external entities.
+The Level 0 DFD represents the entire Jewelify system as a single process interacting with external entities.
 
 **Entities:**
 *   **Guest/User**: Browses products, places orders, manages account.
@@ -16,7 +16,7 @@ The Level 0 DFD represents the entire TechNest system as a single process intera
 
 ```mermaid
 graph TD
-    User[User / Guest] -->|Search, Cart, Order Details, Login Info| System((TechNest System))
+    User[User / Guest] -->|Search, Cart, Order Details, Login Info| System((Jewelify System))
     System -->|Product Info, Order Status, Invoices| User
     
     Admin[Administrator] -->|Product Updates, Order Status Updates| System
@@ -95,7 +95,7 @@ usecaseDiagram
     actor "Registered User" as u
     actor "Administrator" as a
 
-    package TechNest {
+    package Jewelify {
         usecase "Register" as UC1
         usecase "Login" as UC2
         usecase "View Products" as UC3
@@ -164,7 +164,9 @@ erDiagram
         ObjectId userId FK
         String status
         Number totalAmount
-        Date date
+        String paymentMethod
+        Object shipping
+        Date createdAt
     }
 
     ORDER_ITEM {

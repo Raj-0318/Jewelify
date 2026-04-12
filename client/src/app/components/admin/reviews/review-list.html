@@ -14,11 +14,11 @@
                 <thead class="bg-surface border-b border-gray-200">
                     <tr>
                         <th
-                            class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest whitespace-nowrap">
+                            class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest whitespace-nowrap hidden sm:table-cell">
                             Received</th>
                         <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Client
                             Details</th>
-                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">
+                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest hidden md:table-cell">
                             Regarding</th>
                         <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Message
                             content</th>
@@ -26,7 +26,7 @@
                 </thead>
                 <tbody class="divide-y divide-gray-100">
                     <tr *ngFor="let message of messages()" class="hover:bg-accent/10 transition-colors align-top">
-                        <td class="px-8 py-6">
+                        <td class="px-8 py-6 hidden sm:table-cell">
                             <span class="text-[10px] text-gray-500 uppercase tracking-widest whitespace-nowrap">
                                 {{ message.createdAt | date:'longDate' }}
                             </span>
@@ -37,7 +37,7 @@
                                 <span class="text-xs text-gray-500">{{ message.email }}</span>
                             </div>
                         </td>
-                        <td class="px-8 py-6">
+                        <td class="px-8 py-6 hidden md:table-cell">
                             <span class="font-medium text-gray-900 text-sm">
                                 {{ message.subject }}
                             </span>

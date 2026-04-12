@@ -11,9 +11,9 @@
     </div>
 
     <!-- Stats Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 border-b border-gray-200 pb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 border-b border-gray-200 pb-12">
         <!-- Total Sales -->
-        <div class="border border-gray-200 p-8 flex flex-col justify-between">
+        <div class="border border-gray-200 p-4 sm:p-6 md:p-8 flex flex-col justify-between">
             <div>
                 <p class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 mb-4">Total Revenue</p>
                 <h3 class="text-3xl font-display text-gray-900">₹{{ stats().totalSales | number:'1.0-0' }}</h3>
@@ -25,7 +25,7 @@
         </div>
 
         <!-- Active Orders -->
-        <div class="border border-gray-200 p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
+        <div class="border border-gray-200 p-4 sm:p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
             routerLink="/admin/orders">
             <div>
                 <p class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 mb-4">Active Orders</p>
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Total Products -->
-        <div class="border border-gray-200 p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
+        <div class="border border-gray-200 p-4 sm:p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
             routerLink="/admin/products">
             <div>
                 <p class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 mb-4">Total Inventory</p>
@@ -51,7 +51,7 @@
         </div>
 
         <!-- Total Users -->
-        <div class="border border-gray-200 p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
+        <div class="border border-gray-200 p-4 sm:p-6 md:p-8 flex flex-col justify-between cursor-pointer hover:border-gray-400 transition-colors"
             routerLink="/admin/users">
             <div>
                 <p class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 mb-4">Registered Users</p>
@@ -65,7 +65,7 @@
     </div>
 
     <!-- Layout Split -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
         <!-- Recent Orders (Spans 2 cols) -->
         <div class="lg:col-span-2">
             <div class="flex items-end justify-between mb-8 border-b border-gray-200 pb-4">

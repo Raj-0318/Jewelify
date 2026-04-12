@@ -7,18 +7,19 @@ Jewelify is a modern, full-stack e-commerce application built with the MEAN stac
 ## 🚀 Features
 
 ### User Features
--   **Browse Products**: View a wide range of tech products with detailed descriptions, images, and ratings.
--   **Search & Filter**: Powerful search functionality and category filtering to find products easily.
+-   **Browse Products**: View a wide range of premium jewellery pieces with detailed descriptions, high-quality images, and ratings.
+-   **Search & Filter**: Powerful search functionality and category filtering (Rings, Necklaces, etc.) to find items easily.
 -   **Shopping Cart**: Add items to cart, update quantities, and proceed to checkout.
 -   **Ordering System**: Secure checkout process with multiple payment method options.
--   **Order History**: detailed order timeline with visual progress bars (Pending -> Processing -> Shipped -> Delivered).
+-   **Order History**: Detailed order timeline with visual progress bars.
+-   **Premium Aesthetics**: Magazine-inspired editorial layouts with smooth scroll-triggered animations and "Continuous Forward-Wipe" gold hover effects.
 -   **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices.
 
 ### Admin Features
 -   **Dashboard**: Overview of platform performance.
--   **Product Management**: Add, edit, and delete products (CRUD operations).
--   **Order Management**: View all orders, filter by status, and update order statuses (e.g., mark as Shipped/Delivered).
--   **Premium UI**: Glassmorphic admin interface with receipts-style order details.
+-   **Product Management**: Add, edit, and delete items with real-time inventory tracking.
+-   **Order Management**: View all orders, filter by status, and update order lifecycles.
+-   **Premium UI**: Glassmorphic and responsive admin interface with data-dense layouts.
 
 ## 🛠️ Tech Stack
 

@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
             <!-- Main Content (Left Col) -->
             <div class="lg:col-span-2 space-y-8">
                 <div class="space-y-6">
@@ -51,7 +51,7 @@
             </div>
 
             <!-- Sidebar (Right Col) -->
-            <div class="space-y-12">
+            <div class="space-y-8 sm:space-y-10 lg:space-y-12">
                 <!-- Organization -->
                 <div>
                     <h3
@@ -126,7 +126,7 @@
 
                         <!-- Image Preview -->
                         <div
-                            class="border border-gray-200 bg-accent h-64 flex flex-col items-center justify-center relative overflow-hidden group">
+                            class="border border-gray-200 bg-accent h-48 sm:h-64 flex flex-col items-center justify-center relative overflow-hidden group">
                             <ng-container *ngIf="product.image; else noImage">
                                 <img [src]="product.image" class="absolute inset-0 w-full h-full object-cover">
                             </ng-container>

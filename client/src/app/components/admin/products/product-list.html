@@ -25,7 +25,7 @@
                     <tr>
                         <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Piece
                         </th>
-                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">
+                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest hidden sm:table-cell">
                             Collection</th>
                         <th
                             class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest text-right">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-8 py-6">
+                        <td class="px-8 py-6 hidden sm:table-cell">
                             <span class="text-xs text-gray-600 uppercase tracking-widest">
                                 {{ product.category }}
                             </span>
@@ -99,7 +99,7 @@
         </div>
 
         <!-- Pagination -->
-        <div class="px-8 py-6 border-t border-gray-200 bg-surface flex items-center justify-between"
+        <div class="px-4 sm:px-6 md:px-8 py-6 border-t border-gray-200 bg-surface flex flex-col sm:flex-row items-center justify-between gap-4"
             *ngIf="filteredProducts().length > pageSize()">
             <div class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">
                 Showing {{ (currentPage() - 1) * pageSize() + 1 }} - {{ Math.min(currentPage() * pageSize(),

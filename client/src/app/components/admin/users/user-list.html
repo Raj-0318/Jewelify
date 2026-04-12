@@ -25,7 +25,7 @@
                             Contact</th>
                         <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Access
                             Level</th>
-                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Since
+                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest hidden md:table-cell">Since
                         </th>
                         <th
                             class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest text-right">
@@ -57,7 +57,7 @@
                                 {{ user.isAdmin ? 'Admin' : 'Client' }}
                             </span>
                         </td>
-                        <td class="px-8 py-6 text-sm text-gray-500">
+                        <td class="px-8 py-6 text-sm text-gray-500 hidden md:table-cell">
                             {{ user.createdAt | date:'longDate' }}
                         </td>
                         <td class="px-8 py-6 text-right">

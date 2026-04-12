@@ -22,7 +22,7 @@
                         </th>
                         <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Client
                         </th>
-                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest">Date
+                        <th class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest hidden sm:table-cell">Date
                         </th>
                         <th
                             class="px-8 py-6 text-[10px] font-semibold text-gray-500 uppercase tracking-widest text-right">
@@ -45,14 +45,14 @@
                         <td class="px-8 py-6">
                             <div class="flex flex-col text-sm">
                                 <span class="font-medium text-gray-900">{{ order.userId?.name || 'Guest' }}</span>
-                                <span class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">{{
+                                <span class="text-[10px] text-gray-400 uppercase tracking-widest mt-1 hidden md:block">{{
                                     order.userId?.email || 'No email' }}</span>
                             </div>
                         </td>
-                        <td class="px-8 py-6">
+                        <td class="px-8 py-6 hidden sm:table-cell">
                             <div class="flex flex-col text-sm">
                                 <span class="text-gray-900">{{ order.createdAt | date:'MMM d, y' }}</span>
-                                <span class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">{{
+                                <span class="text-[10px] text-gray-400 uppercase tracking-widest mt-1 hidden lg:block">{{
                                     order.createdAt | date:'h:mm a' }}</span>
                             </div>
                         </td>
@@ -108,7 +108,7 @@
     </div>
 
     <div
-        class="bg-white border border-gray-200 shadow-2xl w-full max-w-3xl relative z-10 overflow-hidden flex flex-col max-h-[90vh] animate-fade-in-up">
+        class="bg-white border border-gray-200 shadow-2xl w-full max-w-3xl relative z-10 overflow-hidden flex flex-col max-h-[95vh] animate-fade-in-up">
 
         <button (click)="closeModal()"
             class="absolute top-8 right-8 text-gray-400 hover:text-gray-900 transition-colors">
@@ -118,17 +118,17 @@
         </button>
 
         <!-- Summary Header -->
-        <div class="p-12 pb-8 border-b border-gray-100 text-center">
+        <div class="p-6 sm:p-10 md:p-12 pb-6 sm:pb-8 border-b border-gray-100 text-center">
             <span class="text-[10px] uppercase tracking-widest text-primary font-semibold block mb-2">Invoice
                 Summary</span>
-            <h3 class="text-2xl font-sans font-semibold tracking-wide text-gray-900 mb-2">#{{
+            <h3 class="text-xl sm:text-2xl font-sans font-semibold tracking-wide text-gray-900 mb-2">#{{
                 formatOrderId(selectedOrder()._id) }}</h3>
             <p class="text-xs text-gray-500 uppercase tracking-widest font-light">{{ selectedOrder().createdAt |
                 date:'medium' }}</p>
         </div>
 
-        <div class="p-12 overflow-y-auto font-light text-sm">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-gray-100 pb-12 mb-12">
+        <div class="p-6 sm:p-10 md:p-12 overflow-y-auto font-light text-sm">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 border-b border-gray-100 pb-12 mb-12">
                 <div>
                     <h4 class="text-[10px] font-semibold text-gray-900 uppercase tracking-widest mb-4">Client</h4>
                     <p class="font-medium text-gray-900 mb-1">{{ selectedOrder().userId?.name || 'Guest User' }}</p>
@@ -166,7 +166,7 @@
             </div>
 
             <div class="flex flex-col items-end">
-                <div class="w-full md:w-1/2 space-y-4">
+                <div class="w-full sm:w-2/3 md:w-1/2 space-y-4">
                     <div class="flex justify-between text-gray-600">
                         <span>Total Status</span>
                         <span
@@ -181,7 +181,7 @@
             </div>
         </div>
 
-        <div class="px-12 py-6 border-t border-gray-100 flex justify-end gap-6 bg-surface">
+        <div class="px-6 sm:px-10 md:px-12 py-6 border-t border-gray-100 flex flex-col sm:flex-row justify-end gap-4 sm:gap-6 bg-surface">
             <button (click)="printInvoice()"
                 class="text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-gray-900 transition-colors">Print
                 Invoice</button>

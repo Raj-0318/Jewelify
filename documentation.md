@@ -68,7 +68,7 @@ Limitations to the current scope include a single-vendor model (site owner as so
 ## 3. System Design
 
 ### 3.1 Data Flow Diagram (Analysis)
-The Data Flow Diagram (DFD) for TechNest serves as the blueprint for how information moves through the system. At the highest level (Level 0), the diagram visualizes the interaction between the two primary external entities—Customer and Admin—and the "E-Commerce System" process. Input flows include login credentials, search queries, and order details from the Customer, and product updates and status changes from the Admin. Output flows include product lists, order confirmations, and dashboards. This high-level view establishes the boundaries of the system and identifies the major sources and destinations of data.
+The Data Flow Diagram (DFD) for Jewelify serves as the blueprint for how information moves through the system. At the highest level (Level 0), the diagram visualizes the interaction between the two primary external entities—Customer and Admin—and the "E-Commerce System" process. Input flows include login credentials, search queries, and order details from the Customer, and product updates and status changes from the Admin. Output flows include product lists, order confirmations, and dashboards. This high-level view establishes the boundaries of the system and identifies the major sources and destinations of data.
 
 Drilling down to Level 1, the DFD breaks the system into core processes: Authentication, Catalog Management, Order Processing, and User Management. Here, we see how a "Product Search" request flows from the user to the "Catalog Process," which queries the "Product Inventory" data store. The resulting data flows back to the user interface. Similarly, the "Order Placement" process takes cart data, validates it against the "Inventory" store, creates a record in the "Orders" store, and triggers an update to the user's "Order History." This granular view helps in identifying bottlenecks and ensuring that data dependencies are correctly modeled.
 
@@ -79,7 +79,7 @@ The DFD also highlights the asynchronous nature of certain data flows. For insta
 Finally, the DFD aids in designing the separation between Client and Server. It clearly demarcates which data processing happens on the "Client Side" (like form validation flows) and which happens on the "Server Side" (like database query flows). This distinction is vital for a MEAN stack application, where JavaScript runs on both ends. The DFD ensures that sensitive logic, such as price calculation validation, is correctly placed in the server-side data flows rather than trusting the client-side flows blindly.
 
 ### 3.2 UML Diagram (Analysis)
-The UML (Unified Modeling Language) diagrams for TechNest provide the structural and behavioral skeleton of the application. The Class Diagram is foundational, defining the blueprints for the objects in the system. It defines a `User` class with attributes like `email` and `password`, and methods like `login()` and `register()`. Derived from this are specialized classes if needed, or role attributes. The `Product` class encapsulates data like `price`, `stock`, and `image`. Crucially, the Class Diagram illustrates relationships: a `User` has a one-to-many relationship with `Order`, and an `Order` has a many-to-many relationship with `Product` (resolved via an `OrderItem` class).
+The UML (Unified Modeling Language) diagrams for Jewelify provide the structural and behavioral skeleton of the application. The Class Diagram is foundational, defining the blueprints for the objects in the system. It defines a `User` class with attributes like `email` and `password`, and methods like `login()` and `register()`. Derived from this are specialized classes if needed, or role attributes. The `Product` class encapsulates data like `price`, `stock`, and `image`. Crucially, the Class Diagram illustrates relationships: a `User` has a one-to-many relationship with `Order`, and an `Order` has a many-to-many relationship with `Product` (resolved via an `OrderItem` class).
 
 The Use Case Diagram focuses on the functional requirements from the perspective of the actors. It visually groups the requirements into "packages" of functionality. For the "Customer" actor, use cases include "Search Products," "Add to Cart," "Checkout," and "View History." For the "Admin" actor, use cases include "Manage Inventory," "View Sales," and "Update Order Status." This diagram is essential for verifying scope; every feature built must trace back to a bubble on the Use Case Diagram. It also identifies "include" and "extend" relationships, such as "Checkout" including "Login" (if not already logged in).
 
@@ -88,8 +88,6 @@ The Sequence Diagram captures the dynamic behavior of the system over time. For 
 The Activity Diagram provides a flowchart-like view of business logic. For example, the "Purchase" activity starts with "View Cart." A decision diamond asks "Is User Logged In?". If No, the flow moves to "Login Page." If Yes, it moves to "Enter Address." Another decision point checks "Is Payment Successful?". This diagram helps developers implement the control flow logic correctly in the code. It visualizes the alternative paths and exception scenarios, ensuring the application doesn't get stuck in a dead-end state.
 
 Finally, the Deployment Diagram visualizes the physical topology of the system. It marks the "Client Node" (User's Browser) running the Angular application, communicating via HTTPS with the "Server Node" (Node.js runtime). It also shows the "Database Node" (MongoDB Cluster) connected to the Server. This high-level view helps in planning the infrastructure requirements, understanding network security boundaries (like firewalls between the server and database), and planning for scalability (e.g., adding more Server Nodes behind a load balancer).
-
-### 3.3 Data Dictionary (Analysis)
 
 **Table 1: User Collection**
 
@@ -100,17 +98,20 @@ Finally, the Deployment Diagram visualizes the physical topology of the system. 
 | `email` | String | Unique Index | User's email address. Used for login. |
 | `password` | String | Encrypted | Hashed password string (bcrypt). |
 | `isAdmin` | Boolean | Default: `false` | Flag to differentiate between Admin and Customer. |
+| `createdAt` | Date | Auto | Timestamp of account creation. |
 
 **Table 2: Product Collection**
 
 | Field Name | Data Type | Key Constraints | Description |
 | :--- | :--- | :--- | :--- |
 | `_id` | ObjectId | Primary Key | Unique identifier for the product. |
-| `name` | String | Indexed | Name of the product (e.g., "Wireless Headphones"). |
+| `name` | String | Indexed | Name of the jewellery piece. |
+| `description` | String | Required | Detailed description of the item. |
 | `price` | Number | Min: 0 | Cost of the item in the base currency (INR). |
-| `category` | String | Enum | Category classification (e.g., "Audio", "Wearables"). |
+| `category` | String | Enum | Category classification (e.g., "Rings", "Necklaces"). |
 | `image` | String | URL format | Path or URL to the product image asset. |
-| `stock` | Number | Min: 0 | Quantity available in inventory. |
+| `stock` | Boolean | Default: `true` | Availability status of the item. |
+| `rating` | Number | Default: 0 | Average user rating. |
 
 **Table 3: Order Collection**
 
@@ -121,8 +122,12 @@ Finally, the Deployment Diagram visualizes the physical topology of the system. 
 | `products` | Array | Required | List of product sub-documents. |
 | `products.$.productId` | ObjectId | Foreign Key (Ref: Product) | ID of the item purchased. |
 | `products.$.quantity` | Number | Min: 1 | Number of units purchased. |
+| `products.$.price` | Number | Required | Price at the time of purchase. |
 | `totalAmount` | Number | Required | Final calculated bill value. |
-| `status` | String | Enum ('Pending', 'Shipped') | Current processing state of the order. |
+| `shipping` | Object | Required | Shipping details (name, address, city, etc.). |
+| `paymentMethod` | String | Enum | Method of payment (CARD, UPI, COD). |
+| `status` | String | Enum | Current processing state ('Pending', 'Processing', etc.). |
+| `createdAt` | Date | Auto | Timestamp of order placement. |
 
 **Table 4: Wishlist Collection**
 
@@ -144,27 +149,46 @@ Finally, the Deployment Diagram visualizes the physical topology of the system. 
 | `comment` | String | Required | Textual feedback from the client. |
 | `createdAt` | Date | Auto | Timestamp of review creation. |
 
+**Table 6: Cart Collection**
+
+| Field Name | Data Type | Key Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `userId` | ObjectId | Foreign Key (Ref: User) | The ID of the user whose cart this is. |
+| `products` | Array | Required | List of items in the cart. |
+| `products.$.productId` | ObjectId | Foreign Key (Ref: Product) | ID of the item. |
+| `products.$.quantity` | Number | Default: 1 | Quantity of the item. |
+
+**Table 7: Message Collection**
+
+| Field Name | Data Type | Key Constraints | Description |
+| :--- | :--- | :--- | :--- |
+| `_id` | ObjectId | Primary Key | Unique identifier for the contact message. |
+| `name` | String | Required | Sender's name. |
+| `email` | String | Required | Sender's email address. |
+| `subject` | String | Required | Message subject. |
+| `message` | String | Required | Content of the message. |
+| `createdAt` | Date | Auto | Timestamp of submission. |
+| `read` | Boolean | Default: `false` | Whether the message has been read by admin. |
+
 ### 3.4 Interface Design (Analysis)
 The Interface Design of Jewelify is grounded in a high-end minimalist aesthetic, inspired by luxury fashion editorials.
 
 **1. Color Palette & Typography**
-The platform uses a sophisticated `Secondary Black` (#1A1A1A) background to provide depth and contrast, paired with `Gold` (#D4AF37) for primary calls-to-action and accents. Typography is a critical pillar; `Cormorant Garamond` is used for display headings to convey elegance, while `Montserrat` provides clarity for functional text.
+The platform uses a sophisticated `Secondary Black` (#1A1A1A) background for editorial pages (About, Contact) to provide depth and contrast, while the main storefront utilizes a clean, premium off-white (#F9FAFB). Accent colors are primarily `Gold` (#D4AF37) for primary calls-to-action and key markers. Typography is a critical pillar; `Cormorant Garamond` is used for display headings to convey elegance, while `Montserrat` provides clarity for functional text.
 
 **2. Modern Navigation & Layout**
-The application utilizes a bento-style grid for product discovery and a glassmorphism header for a modern, fluid feel. The footer has been redesigned as a magazine-style anchor, featuring wide columns and artisanal branding.
+The application utilizes a bento-style grid for product discovery and a glassmorphism header for a modern, fluid feel. A distinctive "Continuous Forward-Wipe Gold Hover" animation is implemented on buttons, where a gold gradient wipes from left-to-right on hover and completes the motion on hover-out, providing a high-end tactile feel.
 
 **3. Admin Dashboard**
-The Admin Interface follows a different design language tailored for data density. While the user side uses large cards and whitespace, the Admin side uses compact tables with color-coded badges for order status tracking, priority data retrieval, and operational speed.
+The Admin Interface follows a responsive design language tailored for data density. It features color-coded badges for order status tracking, priority data retrieval, and real-time inventory management. The layout is optimized to remain functional and premium across all screen sizes, from mobile tablets to large monitors.
 
 ## 4. System Testing
 
-### 4.1 Frontend (Client-Side) Validation
-Frontend validation is the primary line of defense in the TechNest application, designed to provide immediate feedback to users and improve the overall user experience. This validation occurs directly in the user's browser before any data is transmitted to the server. By implementing strict validation rules on forms—such as registration, login, and shipping address inputs—we ensure that users cannot submit incomplete or erroneously formatted data. For instance, the registration form checks for valid email formats using Regular Expressions (Regex) and ensures that password fields meet complexity requirements (e.g., minimum length). This reduces server load by preventing invalid requests from ever being sent.
+Frontend validation is the primary line of defense in the Jewelify application, designed to provide immediate feedback to users and improve the overall user experience. This validation occurs directly in the user's browser before any data is transmitted to the server. By implementing strict validation rules on forms—such as registration, login, and shipping address inputs—we ensure that users cannot submit incomplete or erroneously formatted data. For instance, the registration form checks for valid email formats using Regular Expressions (Regex) and ensures that password fields meet complexity requirements (e.g., minimum length). This reduces server load by preventing invalid requests from ever being sent.
 
 The application utilizes Angular's built-in `Validators` and reactive forms to manage this state dynamically. When a user interacts with an input field, the UI responds in real-time; if a required field is left empty or "touched" without input, the border turns red, and a helpful error message appears below the field. This immediate visual cue guides the user to correct mistakes instantly. Furthermore, buttons such as "Place Order" or "Login" remain disabled until the entire form is valid. This proactive approach leads to a smoother, frustration-free interaction, as users are not forced to wait for a server response only to be told they missed a field.
 
-### 4.2 Backend (Server-Side) Validation
-While frontend validation improves usability, Backend (Server-Side) validation ensures the security and integrity of the system. TechNest operates on the principle of "Zero Trust," assuming that any data coming from the client could be malicious or malformed. Therefore, every API endpoint in the Node.js/Express backend employs rigorous validation checks. Before processing a request, the server verifies that all required fields are present and data types match the schema definitions (e.g., ensuring `price` is a number and not a string script). This prevents common vulnerabilities like SQL Injection (or NoSQL Injection in MongoDB) and ensures that the database never stores corrupt data.
+While frontend validation improves usability, Backend (Server-Side) validation ensures the security and integrity of the system. Jewelify operates on the principle of "Zero Trust," assuming that any data coming from the client could be malicious or malformed. Therefore, every API endpoint in the Node.js/Express backend employs rigorous validation checks. Before processing a request, the server verifies that all required fields are present and data types match the schema definitions (e.g., ensuring `price` is a number and not a string script). This prevents common vulnerabilities like SQL Injection (or NoSQL Injection in MongoDB) and ensures that the database never stores corrupt data.
 
 Mongoose middleware plays a crucial role in this layer. The schema definitions themselves enforce constraints such as `unique: true` for email addresses and `min: 0` for product prices. If a request bypasses frontend checks (e.g., via a tool like Postman), the backend validation layer catches it and returns a standardized 400 Bad Request error. Additionally, custom validation logic prevents logical errors, such as checking if there is sufficient stock before confirming an order. This dual-layer validation strategy ensures that the application remains robust against both accidental user errors and intentional attacks.
 
